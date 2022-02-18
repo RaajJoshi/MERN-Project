@@ -1,0 +1,487 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Lato', sans-serif;
+}
+
+.home,
+.reports,
+.products,
+.team,
+.reports {
+  display: flex;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+}
+
+.navbar{
+    position: sticky;
+    top: 0;
+}
+
+.err{
+    margin-top: 10px;
+}
+
+#errinfo{
+    margin-top: 50px;
+    margin-bottom: -8px;
+}
+
+.ucontainer{
+    background: #222D32; 
+    height: 120vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.subcontainer{
+    background-color: #1A2226;
+    width: 300px;
+    height: 430px;
+    padding: 30px;
+    margin-top: 3%;
+    box-sizing: border-box;
+    border-radius: 5px;
+}
+
+.regcontainer{
+    background: #222D32; 
+    height: 200vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.reg-subcontainer{
+    background-color: #1A2226;
+    width: 400px;
+    height: 920px;
+    padding: 30px;
+    margin-top: -1%;
+    box-sizing: border-box;
+    border-radius: 5px;
+}
+
+.addinfocontainer{
+    background: #222D32; 
+    height: 250vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.addinfosubcontainer{
+    background-color: #1A2226;
+    width: 400px;
+    height: 1060px;
+    padding: 30px;
+    margin-top: 5%;
+    box-sizing: border-box;
+    border-radius: 5px;
+}
+
+.selectresouece{
+    margin: 20px;
+    color: #6C6C6C;
+    font-size: 12px;
+    text-align: center;
+}
+
+.admncontainer{
+    background: #222D32; 
+    height: 120vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.admnsubcontainer{
+    background-color: #1A2226;
+    width: 300px;
+    height: 425px;
+    padding: 30px;
+    margin-top: 3%;
+    box-sizing: border-box;
+    border-radius: 5px;
+}
+
+.admntitle{
+    color: white;
+    text-align: center;
+    font-weight: bold;
+    margin: 10px 0px 35px 0px;
+}
+
+.admnuid,
+.admnpassword{
+    margin: 20px;
+    color: #6C6C6C;
+    font-size: 12px;
+}
+
+.admninput{
+    height: 32px;
+    font-size: 20px;
+    outline: none;
+    width: 100%;
+    border-top-style: none;
+    border-left-style: none;
+    border-right-style: none;
+    border-bottom: 2px solid #0DB8DE;
+    margin-bottom: 10px;
+    color: #ECF0F5;
+    background-color: #1A2226;
+}
+
+.admnsubmit{
+    display: flex;
+    text-transform: uppercase;
+    font-size: 16px;
+    border-radius: 20px;
+    color: #0DB8DE;
+    background-color: #1A2226;
+    border-color: #0DB8DE;
+    padding: 10px 60px;
+    margin: auto;
+    cursor: pointer;
+}
+
+.admnsubmit:hover{
+    background-color: #0DB8DE;
+    color: white;
+}
+
+.admnrst{
+    float: left;
+    margin-top: 20px;
+    color: #0DB8DE;
+    padding-left: 3px;
+    padding-right: 3px;
+    border-radius: 5px;
+    border-color: #0DB8DE;
+    background-color: #1A2226;
+}
+
+.admnrst:hover{
+    color: white;
+    background-color: #0DB8DE;
+}
+
+.admnerror{
+    color: hsl(29, 100%, 49%);
+}
+
+.fpasswd{
+    color: #0DB8DE;
+    background-color: #1A2226;
+    border: none;
+    font-size: 0.755rem;
+}
+
+.title{
+    color: white;
+    text-align: center;
+    font-weight: bold;
+    margin: 10px 0px 35px 0px;
+}
+
+.labno,
+.pcno,
+.chrno,
+.acno,
+.fanno,
+.lightno,
+.classno,
+.benchno,
+.fannno,
+.tubelightno,
+.projec,
+.ehtr,
+.projc,
+.fname,
+.lname,
+.uid,
+.password,
+.cnfpassword,
+.email,
+.phone,
+.feedback,
+.radiobutton{
+    margin: 20px;
+    color: #6C6C6C;
+    font-size: 12px;
+}
+
+.password{
+    margin-bottom: 40px;
+}
+
+.button{
+    padding: 5px;
+}
+
+.input{
+    height: 32px;
+    font-size: 20px;
+    outline: none;
+    width: 100%;
+    border-top-style: none;
+    border-left-style: none;
+    border-right-style: none;
+    border-bottom: 2px solid #0DB8DE;
+    margin-bottom: 10px;
+    color: #ECF0F5;
+    background-color: #1A2226;
+}
+
+.inputtxt{
+    height: 100px;
+    resize: none;
+    font-size: 20px;
+    outline: none;
+    width: 100%;
+    border: 2px solid #0DB8DE;
+    margin-bottom: 10px;
+    color: #ECF0F5;
+    background-color: #1A2226;
+}
+
+.error{
+    color: hsl(29, 100%, 49%);
+}
+
+.submit{
+    display: flex;
+    text-transform: uppercase;
+    font-size: 16px;
+    border-radius: 20px;
+    color: #0DB8DE;
+    background-color: #1A2226;
+    border-color: #0DB8DE;
+    padding: 10px 60px;
+    margin: auto;
+    cursor: pointer;
+}
+
+.submit:hover{
+    background-color: #0DB8DE;
+    color: white;
+}
+
+.rstbtn{
+    float: left;
+    margin-top: 20px;
+    color: #0DB8DE;
+    padding-left: 3px;
+    padding-right: 3px;
+    border-radius: 5px;
+    border-color: #0DB8DE;
+    background-color: #1A2226;
+}
+
+.rstbtn:hover{
+    color: white;
+    background-color: #0DB8DE;
+}
+
+.regtolog{
+    margin-top: 20px;
+    margin-right: 0px;
+    font-size: 0.875em;
+    float: right;
+    color: #0DB8DE;
+    text-decoration: underline;
+    background-color: #1A2226;
+    border: none;
+}
+
+.logtoreg{
+    margin-top: 20px;
+    margin-right: 3px;
+    font-size: 0.875em;
+    float: right;
+    color: #0DB8DE;
+    text-decoration: underline;
+    background-color: #1A2226;
+    border: none;
+}
+
+
+.admnviewcontainer{
+    background: #222D32; 
+    height: 95vh;
+    display: flex;
+    align-items: center;
+    align-content: left;
+}
+
+.admnactions{
+    background-color: #1A2226;
+    width: 300px;
+    height: 425px;
+    padding: 30px;
+    margin-top: -5%;
+    box-sizing: border-box;
+}
+
+.admnfunctions{
+    color: #ECF0F5;
+    list-style-type: none;
+    margin: 10px;
+    padding: 26px;
+    display:table-row-group;
+}
+
+
+
+.updateinfocontainer{
+    background: #222D32;
+    margin-top: 50px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    min-height: 75vh;
+}
+
+.updateinfosubcontainer{ 
+    width: 400px;
+    background-color: #1A2226;
+    color: white;
+    flex-direction: column;
+    
+    margin-top: 5px;
+    box-sizing: border-box;
+    border-radius: 5px;
+}
+
+.updateinfosubcontainer h3{
+    margin-left: 20px;
+    margin-top: 27px;
+    padding-bottom: 0px;
+    font-size: medium;
+}
+
+.mancomp{
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 20px;
+}
+
+.feedbackcontainer{
+    background: #222D32;
+    margin-top: 50px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    min-height: 75vh;
+}
+
+.feedbacksubcontainer{ 
+    width: 400px;
+    background-color: #1A2226;
+    color: white;
+    flex-direction: column;
+    box-sizing: border-box;
+    border-radius: 5px;
+}
+
+.feedbacksubcontainer h4{
+    margin-left: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: medium;
+}
+
+.feedbackmain{
+    display: flex;
+    flex-direction: row;
+    margin-top: 50px;
+}
+
+.mancomp button{
+    width: 70px;
+    height: 40px;
+    color: #0DB8DE;
+    justify-content: center;
+    align-items: center;
+    background-color: #1A2226;
+    margin-top: 16px;
+    margin-bottom: 22.5px;
+    margin-left: -78px;
+    box-sizing: border-box;
+    border-radius: 4px;
+    border-color: #0DB8DE;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+}
+
+#upbtn button{
+    height: 25px;
+}
+
+.mancomp button:hover{
+    transition: all 0.2s ease-in-out;
+    background-color: #0DB8DE;
+    color: white;
+}
+
+.buttoncss{
+    margin-top: 10px;
+}
+
+.labtitle{
+    background-color: black;
+    box-sizing: border-box;
+    border-radius: 5px;
+    margin-top: -10px;
+    text-align: center;
+    color: hsl(29, 100%, 49%);
+}
+
+.main{
+    display: flex;
+    flex-direction: column;
+    margin-top: 40px;
+    margin-bottom: 15px;
+}
+
+.mancompin{
+    display: flex;
+    flex-direction: row;
+    margin-top: 40px;
+}
+
+.mancompin button{
+    width: 95px;
+    height: 40px;
+    color: #0DB8DE;
+    background-color: #1A2226;
+    margin-top: 15px;
+    margin-left: -105px;
+    box-sizing: border-box;
+    border-radius: 4px;
+    border-color: #0DB8DE;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    text-decoration: none;
+}
+
+.mancompin button:hover{
+    transition: all 0.2s ease-in-out;
+    background-color: #0DB8DE;
+    color: white;
+}
