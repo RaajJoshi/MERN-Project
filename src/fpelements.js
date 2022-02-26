@@ -78,3 +78,10 @@ export const NavBtnLink = styled(Link)`
         color: #0DB8DE;
     }
 `;
+
+export const DropdownItem = styled.nav`
+    display: flex;       
+    flex-direction: column;
+    background-color: black;
+    padding: 5px;
+`;

@@ -8,8 +8,12 @@ const Reg = () => {
     let history = useHistory();
 
     const [err, setErr] = useState('');
+    const [mess, setMess] = useState('');
 
-    const [valuesReg, setValuesReg] = useState({
+    const [pass, setPass] = useState(false);
+    const [cnpass, setCnpass] = useState(false);
+
+    const [valuesReg, setValuesReg] = useState([{
         fname: '',
         lname: '',
         userID: '',
@@ -17,7 +21,7 @@ const Reg = () => {
         phone: '',
         password: '',
         cnfpasswd: ''
-    });
+    }]);
 
     const [errors, setErrors] = useState({});
 
@@ -62,23 +66,27 @@ const Reg = () => {
                 },
                 config
             );
+            setErr('');
+            setMess('Registered successfully');
             setValuesReg({ fname: '', lname: '', userID: '', email: '', phone: '', password: '', cnfpasswd: '' });
             console.log(data);
             history.push("/ulogin");
         } catch (errors) {
             console.log("Error");
+            setMess('');
             setErr('Invalid Credential');
         }
     };
 
     return (
         <div className='regcontainer'>
-            {err && <div className="alert alert-warning" role="alert">{err}</div>}
+            {mess && <div id='errinforeg' className="alert alert-success" role="alert">{mess}</div>}
+            {err && <div id='errinforeg' className="alert alert-warning" role="alert">{err}</div>}
             <div className='reg-subcontainer'>
                 <div>
                     <h2 className='title'>Sign-up</h2>
                 </div>
-                <form method='POST' onClick={postData}>
+                <form method='POST'>
                     <div className='fname'>
                         <label htmlFor="fname">First Name</label>
                         <input type="text" name="fname"
@@ -139,28 +147,30 @@ const Reg = () => {
                     </div>
                     <div className='password'>
                         <label htmlFor="password">password</label>
-                        <input type="password" name="password"
+                        <input type={pass ? "text" : "password"} name="password"
                             value={valuesReg.password}
                             onChange={changeHandle}
                             className='input'
                             autoComplete='off'
                             required
                         />
+                        <i className='fa fa-eye password-icon' onClick={()=>setPass(!pass)} />
                         {errors.password && <p className='error'>{errors.password}</p>}
                     </div>
                     <div className='cnfpassword'>
                         <label htmlFor="cnfpasswd">Confirm password</label>
-                        <input type="password" name="cnfpasswd"
+                        <input type={cnpass ? "text" : "password"} name="cnfpasswd"
                             value={valuesReg.cnfpasswd}
                             onChange={changeHandle}
                             className='input'
                             autoComplete='off'
                             required
                         />
+                        <i id='cpass' className='fa fa-eye password-icon' onClick={()=>setCnpass(!cnpass)} />
                         {errors.cnfpasswd && <p className='error'>{errors.cnfpasswd}</p>}
                     </div>
                     <div>
-                        <button type='submit' className="submit">Sign-up</button>
+                        <button type='submit' className="submit" onClick={postData}>Sign-up</button>
                     </div>
                     <div>
                         <button type='btn' className="rstbtn" onClick={resetHandle}>cancel</button>

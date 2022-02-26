@@ -19,6 +19,38 @@
   font-size: 3rem;
 }
 
+.showHide{
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-top: 25px;
+}
+.shbtn{
+    width: 540px;
+    border: 2px solid #1A2226;
+    font-size: 15px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.table{
+    border-collapse: collapse;
+    border: 2px solid #dddddd;
+    width: 540px;
+    margin-left: 237px;
+    font-size: 15px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.table td{
+    border: 1px solid #dddddd;
+    text-align: left;
+}
+.table tr:nth-child(even){
+    background-color: #dddddd;
+}
+
 .navbar{
     position: sticky;
     top: 0;
@@ -31,6 +63,11 @@
 #errinfo{
     margin-top: 50px;
     margin-bottom: -8px;
+}
+
+#errinforeg{
+    margin-top: 10px;
+    margin-bottom: 20px;
 }
 
 .ucontainer{
@@ -217,10 +254,40 @@
 .email,
 .phone,
 .feedback,
+.abeq,
+.eqtype,
+.resno,
 .radiobutton{
     margin: 20px;
     color: #6C6C6C;
     font-size: 12px;
+}
+
+.password-icon{
+    position: absolute;
+    right: 375px;
+    top: 657px;
+    cursor: pointer;
+    
+}
+
+#cpass{
+    top: 758px;
+}
+
+.ddt{
+    margin-top: 5px;
+    width: 300px;
+}
+.ddm{
+    width: 300px;
+    background-color: #222D32;
+}
+.ddi{
+    color: #ECF0F5;
+}
+.ddi:hover{
+    background-color: #6C6C6C;
 }
 
 .password{
@@ -462,7 +529,7 @@
 .mancompin{
     display: flex;
     flex-direction: row;
-    margin-top: 40px;
+    margin-bottom: 20px;
 }
 
 .mancompin button{
@@ -484,4 +551,10 @@
     transition: all 0.2s ease-in-out;
     background-color: #0DB8DE;
     color: white;
+}
+
+.mobile-app{
+    grid-column: 2/4;
+    position: relative;
+    z-index: 99;
 }

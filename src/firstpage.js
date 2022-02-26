@@ -1,10 +1,14 @@
-import React from "react";
+import React, {useState} from "react";
 import './App.css';
-import { Nav, NavLink, Bars, NavMenu, NavBtn, NavBtnLink } from './fpelements';
-
+import { Nav, NavLink, Bars, NavMenu, NavBtn, NavBtnLink, DropdownItem } from './fpelements';
+import { DropdownData } from "./DropdownData";
+import DMenu from "./DMenu";
 
 function Firstpage() {
 
+
+  const [sidebar, setSidebar] = useState(false);
+  const showSidebar = () => setSidebar(!sidebar);
 
   return (
     <>
@@ -15,22 +19,27 @@ function Firstpage() {
           <NavLink to="/home" activeStyle>
             Home
           </NavLink>
-          <NavLink to="/alogin" activeStyle>
-            ADMIN
-          </NavLink>
           <NavLink to="/about" activeStyle>
             About us
           </NavLink>
           <NavLink to="/reg" activeStyle>
             Registration
           </NavLink>
+          <NavLink to="/" activeStyle onClick={()=>{ localStorage.removeItem("userInfo"); }}>
+            Logout
+          </NavLink>
         </NavMenu>
-        
+         
         <NavBtn>
-          <NavBtnLink to='/ulogin'>Log-in</NavBtnLink>
+          <NavBtnLink onClick={showSidebar} to='#'>Log-in</NavBtnLink>
         </NavBtn>
         
       </Nav>
+      {sidebar && <DropdownItem>
+          {DropdownData.map((item, index) => {
+              return <DMenu item={item} key={index} />;
+          })}
+        </DropdownItem>}
     </>
   );
 };

@@ -14,7 +14,6 @@ const Aview = () => {
     <Router>
       <Sidebar />
       <Switch>
-        <Route path='#' component={Updateinfo} />
         <Route path='/addInfo' component={Addinfo} />
         <Route path='/deleteInfo' component={Deleteinfo} />
         <Route path='/feedback' component={Feedback} />

@@ -3,7 +3,7 @@ import Valdt from './validation';
 import {useHistory} from 'react-router-dom';
 import Axios from 'axios';
 
-export const Alogin = () => {
+export const Flogin = () => {
     let history = useHistory();
 
     const [userID, setUserID] = useState('');
@@ -28,7 +28,7 @@ export const Alogin = () => {
                 }
             };
             const {data} = await Axios.post(
-                "/admnlogin",
+                "/faclogin",
                 {
                     userID,
                     password,
@@ -39,7 +39,7 @@ export const Alogin = () => {
             setUserID('');
             setPassword('');
             console.log(data);
-            history.push("/aview");
+            history.push("/fview");
         } catch(errors){
             console.log("Error");
             setErr('Invalid Credential');           
@@ -51,7 +51,7 @@ export const Alogin = () => {
             {err && <div className="alert alert-warning" role="alert">{err}</div>}
             <div className='admnsubcontainer'>
                 <div>
-                    <h2 className='admntitle'>ADMIN PANEL</h2>
+                    <h2 className='admntitle'>Faculty</h2>
                 </div>
                 <form method='POST' onSubmit={checkData}>
                     <div className='admnuid'>
@@ -86,4 +86,4 @@ export const Alogin = () => {
     );
 };
 
-export default Alogin;
+export default Flogin;

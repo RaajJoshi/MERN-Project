@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import Valdt from './validation';
 import { useHistory } from 'react-router-dom';
 import Axios from 'axios';
@@ -7,55 +7,20 @@ import Axios from 'axios';
 export const Ulogin = () => {
     let history = useHistory();
 
+    useEffect(() => {
+      const userInfo = localStorage.getItem("userInfo");
+      if(userInfo) {
+          history.push("/uview");
+      }
+      
+    }, [history]);
+    
     
     const [userID, setUserID] = useState('');
     const [password, setPassword] = useState('');
     const [err, setErr] = useState('');
     
     const [errors, setErrors] = useState({});
-
-    /*
-    const [values, setValues] = useState([{
-        userID: '',
-        password: '',
-    }]);
-
-    
-
-    const changeHandle = (e) => {
-        setValues({
-            ...values, [e.target.name]: e.target.value
-        });
-    };
-    
-
-    
-
-    
-    const checkData = async (e) => {
-        e.preventDefault();
-        setErrors(Valdt(values));
-        const { email, password } = values;
-        const res = await fetch('http://localhost:5000/usrlogin', {
-            method: 'POST',
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                email, 
-                password,
-            }),
-        });
-        setValues({ userID: '', password: '' });
-        const data = await res.json();
-        if (data.status === 400 || !data) {
-            window.alert("Invalid Login");
-        } else {
-            window.alert("Valid Login");
-            history.push("/uview");
-        }
-    };
-    */
 
     const resetHandle = (e) => {
         e.preventDefault();
@@ -80,6 +45,7 @@ export const Ulogin = () => {
                 },
                 config
             );
+            localStorage.setItem("userInfo",JSON.stringify(data));
             setUserID('');
             setPassword('');
             console.log(data);

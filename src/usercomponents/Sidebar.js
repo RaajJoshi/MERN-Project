@@ -55,13 +55,15 @@ const Sidebar = () => {
 
   const showSidebar = () => setSidebar(!sidebar);
 
+  
   const [finalValue, setFinalValue] = useState([]);
 
+  
   useEffect(() => {
     let data = [];
     data = JSON.parse(localStorage.getItem("userInfo"));
     const uid = data[2];
-    Axios.get(`/readadmnbyid/${uid}`, {
+    Axios.get(`/readusrbyid/${uid}`, {
     }).then((response) => {
       setFinalValue(response.data)
     })
@@ -70,6 +72,7 @@ const Sidebar = () => {
       });
   }, []);
 
+
   return (
     <>
       <IconContext.Provider value={{ color: '#fff' }}>
@@ -77,7 +80,6 @@ const Sidebar = () => {
           <NavIcon to='#'>
             <FaIcons.FaBars onClick={showSidebar} />
           </NavIcon>
-          
           <h6 style={{ color: '#15cdfc', marginBottom:'-5px'}}>Welcome...</h6>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           {finalValue.map((val) => {
             return (
@@ -89,10 +91,12 @@ const Sidebar = () => {
           })}
         </Nav>
         <SidebarNav sidebar={sidebar}>
-          <SidebarWrap>  
+          <SidebarWrap>
+            
             <NavIcon to='#'>
               <AiIcons.AiOutlineClose onClick={showSidebar} />
-            </NavIcon>          
+            </NavIcon>
+            
             {SidebarData.map((item, index) => {
               return <SubMenu item={item} key={index} />;
             })}

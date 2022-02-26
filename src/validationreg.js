@@ -12,6 +12,8 @@ const Validationreg = (valuesReg) => {
     }
     if(!valuesReg.email){
         errors.email = "Email is required.";
+    }else if(!/[a-z0-9]+@ddu\.ac\.in/.test(valuesReg.email)){
+        errors.email = "plz, Enter valid email.";
     }
     if(!valuesReg.phone){
         errors.phone = "Phone no. is required.";

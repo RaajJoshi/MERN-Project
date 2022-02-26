@@ -1,7 +1,10 @@
 import React from 'react';
-import * as FaIcons from 'react-icons/fa';
 import * as IoIcons from 'react-icons/io';
 import * as RiIcons from 'react-icons/ri';
+import * as AiIcons from 'react-icons/ai';
+import * as BiIcons from 'react-icons/bi';
+import * as FiIcons from 'react-icons/fi';
+import * as BsIcons from 'react-icons/bs';
 
 export const SidebarData = [
   {
@@ -14,25 +17,25 @@ export const SidebarData = [
       {
         title: 'Pending',
         path: '/pending',
-        icon: <IoIcons.IoIosPaper />,
+        icon: <AiIcons.AiOutlineClockCircle />,
         cName: 'sub-nav'
       },
       {
         title: 'Inprogress',
         path: '/progress',
-        icon: <IoIcons.IoIosPaper />,
+        icon: <FiIcons.FiPauseCircle />,
         cName: 'sub-nav'
       },
       {
         title: 'Completed',
         path: '/completed',
-        icon: <IoIcons.IoIosPaper />
+        icon: <BiIcons.BiSelectMultiple />
       }
     ]
   },
   {
     title: 'Manage Resources',
-    icon: <FaIcons.FaEnvelopeOpenText />,
+    icon: <IoIcons.IoIosSettings />,
     iconClosed: <RiIcons.RiArrowDownSFill />,
     iconOpened: <RiIcons.RiArrowUpSFill />,
 
@@ -40,23 +43,23 @@ export const SidebarData = [
       {
         title: 'Add Resource',
         path: '/addInfo',
-        icon: <IoIcons.IoIosPaper />
+        icon: <BiIcons.BiBookAdd />
       },
       {
         title: 'Delete Resource',
         path: '/deleteInfo',
-        icon: <IoIcons.IoIosPaper />
+        icon: <IoIcons.IoIosTrash />
       },
       {
         title: 'Update Resource',
         path: '/updateInfo',
-        icon: <IoIcons.IoIosPaper />
+        icon: <FiIcons.FiRefreshCcw />
       }
     ]
   },
   {
     title: 'Feedback',
     path: '/feedback',
-    icon: <IoIcons.IoIosPaper />
+    icon: <BsIcons.BsChatLeftText />
   }
 ];

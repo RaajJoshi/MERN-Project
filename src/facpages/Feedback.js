@@ -1,15 +1,22 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Axios from 'axios';
-import Sidebar from '../components/Sidebar';
+import Valdt from '../userpages/validationFdbk';
+import Sidebar from '../faccomponents/Sidebar';
 
 const Feedabck = () => {
 
-    /*
     const [feedback, setFeedback] = useState('');
+    const [errors, setErrors] = useState({});
+    const [mess, setMess] = useState('');
+    let data = [];
+    data = JSON.parse(localStorage.getItem("userInfo"));
+    const uid = data[2];
+    const fname = data[3];
+    const lname = data[4];
 
     const postFeedback = async (e) => {
         e.preventDefault();
-        //setErrors(Valdt({email,password}));
+        setErrors(Valdt({feedback}));
         try{
             const config = {
                 headers:{
@@ -17,37 +24,28 @@ const Feedabck = () => {
                 }
             };
             const {data} = await Axios.post(
-                "/feedback",
+                `/feedbackbe/${uid}`,
                 {
                     feedback,
+                    fname,
+                    lname,
                 },
                 config
             );
+            setFeedback('');
+            setMess('Add Feedback successfully');
             console.log(data);
         } catch(errors){
             console.log("Error");
+            setMess('');
         }
     };
-    */
-
-    const [finalValue, setFinalValue] = useState([]);
-
-
-    useEffect(() => {
-        Axios.get("/readfeedback", {
-        }).then((response) => {
-            setFinalValue(response.data)
-        })
-            .catch(() => {
-                console.log("error");
-            });
-    }, []);
 
     return (
-        /*
         <>
             <Sidebar />
             <div className='addinfocontainer'>
+                {mess && <div id='errinfo' className="alert alert-success" role="alert">{mess}</div>}
                 <div className='addinfosubcontainer'>
                     <form method='POST'>
                         <div className='feedback'>
@@ -59,35 +57,13 @@ const Feedabck = () => {
                                 placeholder='Enter your Feedback...'
                                 autoComplete='off'
                             />
-                            {errors.labno && <p className='error'>{errors.labno}</p>}
+                            {errors.feedback && <p className='error'>{errors.feedback}</p>}
                         </div>
                         <div>
                             <button type='submit' onClick={postFeedback} className="submit">Submit feedback</button>
                         </div>
                     </form>
                 </div>
-            </div>
-        </>
-        */
-
-        <>
-            <Sidebar />
-            <div className='feedbackcontainer'>
-                {finalValue.map((val) => {
-                    return (
-                        <div className='main'>
-                            <div className='labtitle'>
-                                <h4>Feedabck from : {val.fname}{" "}{val.lname}</h4>
-                                <h4>ID : {val.userID}</h4>
-                            </div>
-                            <div className='feedbackmain'>
-                                <div className='feedbacksubcontainer'>
-                                    <h4>{val.feedback}</h4>
-                                </div>
-                            </div>
-                        </div>
-                    );
-                })}
             </div>
         </>
     );
