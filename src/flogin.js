@@ -39,7 +39,13 @@ export const Flogin = () => {
             setUserID('');
             setPassword('');
             console.log(data);
-            history.push("/fview");
+            let data1;
+            data1 = data[5]
+            if(data1 === 'no'){
+                history.push("/fview");
+            }else{
+                history.push("/infview");
+            }
         } catch(errors){
             console.log("Error");
             setErr('Invalid Credential');           

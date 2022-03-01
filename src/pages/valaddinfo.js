@@ -25,6 +25,9 @@ const Validationinfo = (valuesLab) => {
     if(!valuesLab.projc){
         errors.projc = "Please, choose option.";
     }
+    if(!valuesLab.Incharge){
+        errors.Incharge = "This field is required.";
+    }
   return errors;
 };
 

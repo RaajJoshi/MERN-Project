@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import './App.css';
 import { Nav, NavLink, Bars, NavMenu, NavBtn, NavBtnLink, DropdownItem } from './fpelements';
 import { DropdownData } from "./DropdownData";
@@ -10,6 +10,7 @@ function Firstpage() {
   const [sidebar, setSidebar] = useState(false);
   const showSidebar = () => setSidebar(!sidebar);
 
+
   return (
     <>
       <Nav className="navbar">
@@ -17,29 +18,36 @@ function Firstpage() {
         <Bars />
         <NavMenu>
           <NavLink to="/home" activeStyle>
+            <i class="bi bi-house-door-fill" style={{marginRight:'3px'}} />
             Home
           </NavLink>
           <NavLink to="/about" activeStyle>
+          <i class="bi bi-people-fill" style={{marginRight:'3px'}} />
             About us
           </NavLink>
+
           <NavLink to="/reg" activeStyle>
+          <i class="bi bi-person-circle" style={{marginRight:'3px'}} />
             Registration
           </NavLink>
-          <NavLink to="/" activeStyle onClick={()=>{ localStorage.removeItem("userInfo"); }}>
-            Logout
-          </NavLink>
+
+          <NavBtn>
+            <NavBtnLink onClick={showSidebar} to='#'>Log-in</NavBtnLink>
+          </NavBtn>
+
+          
+          {/* <NavBtn>
+            <NavBtnLink to='/' activeStyle onClick={() => { localStorage.removeItem("userInfo"); }}>Logout</NavBtnLink>
+          </NavBtn> */}
+          
+
         </NavMenu>
-         
-        <NavBtn>
-          <NavBtnLink onClick={showSidebar} to='#'>Log-in</NavBtnLink>
-        </NavBtn>
-        
       </Nav>
-      {sidebar && <DropdownItem>
-          {DropdownData.map((item, index) => {
-              return <DMenu item={item} key={index} />;
-          })}
-        </DropdownItem>}
+      {sidebar && <DropdownItem onClick={showSidebar}>
+        {DropdownData.map((item, index) => {
+          return <DMenu item={item} key={index} />;
+        })}
+      </DropdownItem>}
     </>
   );
 };

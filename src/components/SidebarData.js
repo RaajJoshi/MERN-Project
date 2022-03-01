@@ -27,6 +27,12 @@ export const SidebarData = [
         cName: 'sub-nav'
       },
       {
+        title: 'Under Process',
+        path: '/uprocess',
+        icon: <FiIcons.FiPauseCircle />,
+        cName: 'sub-nav'
+      },
+      {
         title: 'Completed',
         path: '/completed',
         icon: <BiIcons.BiSelectMultiple />

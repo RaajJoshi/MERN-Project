@@ -19,7 +19,8 @@ const Addinfo = () => {
         fanno: '',
         lightno: '',
         ethr: '',
-        projc: ''
+        projc: '',
+        Incharge: ''
     }]);
 
 
@@ -56,7 +57,7 @@ const Addinfo = () => {
     const postDataLab = async (e) => {
         e.preventDefault();
         setErrors(Valdt(valuesLab));
-        const { labno, pcno, chrno, acno, fanno, lightno, ethr, projc } = valuesLab;
+        const { labno, pcno, chrno, acno, fanno, lightno, ethr, projc, Incharge } = valuesLab;
         try {
             const config = {
                 headers: {
@@ -74,12 +75,13 @@ const Addinfo = () => {
                     lightno,
                     ethr,
                     projc,
+                    Incharge,
                 },
                 config
             );
             setErr('');
             setMess('Add LAB successfully');
-            setValuesLab({ labno: '', pcno: '', chrno: '', acno: '', fanno: '', lightno: '', ethr: '', projc: '' });
+            setValuesLab({ labno: '', pcno: '', chrno: '', acno: '', fanno: '', lightno: '', ethr: '', projc: '', Incharge: '' });
             console.log(data);
         } catch (errors) {
             console.log("Error");
@@ -127,7 +129,7 @@ const Addinfo = () => {
             <Sidebar />
             <div className='addinfocontainer'>
                 {err && <div id='errinfo' className="alert alert-warning" role="alert">{err}</div>}
-                {mess && <div id='errinfo' className="alert alert-warning" role="alert">{mess}</div>}
+                {mess && <div id='errinfo' className="alert alert-success" role="alert">{mess}</div>}
                 <div className='addinfosubcontainer'>
                     <div className='selectresouece'>
                         <label style={{ fontSize: "16px" }}>Select Resource</label><br />
@@ -262,6 +264,16 @@ const Addinfo = () => {
                                                         onClick={changeHandleRadio} />
                                                 </label>
                                                 {errors.projc && <p className='error'>{errors.projc}</p>}
+                                            </div>
+                                            <div className='lightno'>
+                                                <label htmlFor="Incharge">Faculty Incharge</label>
+                                                <input type="text" name="Incharge"
+                                                    value={valuesLab.Incharge}
+                                                    onChange={changeHandleRadio}
+                                                    className='input'
+                                                    autoComplete='off'
+                                                />
+                                                {errors.Incharge && <p className='error'>{errors.Incharge}</p>}
                                             </div>
                                             <div>
                                                 <button type='submit' onClick={postDataLab} className="submit">Add</button>

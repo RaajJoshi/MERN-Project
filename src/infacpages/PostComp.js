@@ -1,9 +1,9 @@
 import React, {useState,useEffect} from 'react'
-import Sidebar from '../usercomponents/Sidebar';
+import Sidebar from '../infaccomponents/Sidebar';
 import {Dropdown} from 'react-bootstrap';
 import Axios from 'axios';
-import Valdt from './validationLab';
-import ValdtClass from './validationClass';
+import Valdt from '../userpages/validationLab';
+import ValdtClass from '../userpages/validationClass';
 
 
 const PostComp = () => {
@@ -179,7 +179,7 @@ const PostComp = () => {
                         <label htmlFor="resno">Lab no.</label>
                         <Dropdown value={compLab.resno} name='eqtype'>
                           <Dropdown.Toggle className='ddt' variant="secondary" id="dropdown-basic">
-                            Lab No : {compLab.resno}
+                            Dropdown Button
                           </Dropdown.Toggle>
                           <Dropdown.Menu className='ddm'>
 
@@ -196,7 +196,7 @@ const PostComp = () => {
                       </div>
                       
                       <div className='eqtype'>
-                        <label htmlFor="eqtype">Select Equipment</label>
+                        <label htmlFor="eqtype">Select Equipments</label>
                         <Dropdown value={compLab.eqtype} name='eqtype'>
                           <Dropdown.Toggle className='ddt' variant="secondary" id="dropdown-basic">
                             Dropdown Button

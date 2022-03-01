@@ -6,10 +6,23 @@ const Inprogresscomp = () => {
 
 
     const [finalValue, setFinalValue] = useState([]);
-    
+
+    const updateStatus = (id) => {
+        const newStatus = 'completed';
+        Axios.put("/updatecompsts", {
+            newStatus: newStatus,
+            id: id
+        }).then(() => {
+            setFinalValue(finalValue.map((val) => {
+                return val._id === id
+                    ? { _id: id, comptype: val.comptype, resno: val.resno, eqtype: val.eqtype, abeq: val.abeq, status: newStatus }
+                    : val;
+            }));
+        });
+    };
 
     useEffect(() => {
-        Axios.get("/readcompinp", {
+        Axios.get("/readcompup", {
         }).then((response) => {
             setFinalValue(response.data)
         })
@@ -38,7 +51,12 @@ const Inprogresscomp = () => {
                                         <h3>Equipment : {val.eqtype}{"  "}</h3>
                                         <h3>Description : {val.abeq}{"  "}</h3>
                                         <h3>STATUS : {val.status}</h3>
-                                    </div>  
+                                    </div>
+    
+                                    <div>
+                                        <button onClick={() => { updateStatus(val._id); }}>complete it</button>
+                                    </div>
+    
                                 </div>
                             </div>
                         );
@@ -54,6 +72,11 @@ const Inprogresscomp = () => {
                                         <h3>Description : {val.abeq}{"  "}</h3>
                                         <h3>STATUS : {val.status}</h3>
                                     </div>
+    
+                                    <div>
+                                        <button onClick={() => { updateStatus(val._id); }}>complete it</button>
+                                    </div>
+    
                                 </div>
                             </div>
                         );

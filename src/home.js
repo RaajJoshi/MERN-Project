@@ -11,18 +11,19 @@ const Home = () => {
 
     return (
         <>
+            <h3 style={{textAlign:'center'}} className='my-3'>Welcome To Online College Complaint System</h3>
             <Carousel fade variant='dark'>
                 <Carousel.Item>
                     <img
                         className="d-block w-100"
-                        src={img2} height="300px" width="350px"
+                        src={img2} height="350px" width="350px"
                         alt="First slide"
                     />
                 </Carousel.Item>
                 <Carousel.Item>
                     <img
                         className="d-block w-100"
-                        src={img4} height="300px" width="350px"
+                        src={img4} height="350px" width="350px"
                         alt="Second slide"
                     />
 
@@ -30,14 +31,13 @@ const Home = () => {
                 <Carousel.Item>
                     <img
                         className="d-block w-100"
-                        src={img3} height="300px" width="350px"
+                        src={img3} height="350px" width="350px"
                         alt="Third slide"
                     />
 
                 </Carousel.Item>
             </Carousel>
             <div className='showHide'>
-                <h3>Welcome To Online College Complaint System</h3>
                 <button className='shbtn' onClick={() => setShowHide(!showHide)}>
                     {showHide ? "Click to Hide guidelines" : "Click to Show Details"}
                 </button>

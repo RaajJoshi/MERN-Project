@@ -12,6 +12,9 @@ const SidebarLink = styled(Link)`
   height: 60px;
   text-decoration: none;
   font-size: 18px;
+  &.active{
+    color: black;
+    };
   &:hover {
     background: #252831;
     border-left: 4px solid #15cdfc;
@@ -33,12 +36,14 @@ const DropdownLink = styled(Link)`
   text-decoration: none;
   color: #f5f5f5;
   font-size: 18px;
+  &.active{
+    color: red;
+};
   &:hover {
     background: #256ce1;
     cursor: pointer;
     color: white;
-  },
-  
+  }
 `;
 
 const SubMenu = ({ item }) => {

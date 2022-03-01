@@ -10,12 +10,14 @@ import Abt from './about';
 import Uvw from './uview';
 import Avw from './aview';
 import Fvw from './fview';
+import IFvw from './infview';
 import Addinfo from './pages/Addinfo';
 import Deleteinfo from './pages/DeleteInfo';
 import Feedback from './pages/feedback';
 import Updateinfo from './pages/Updateinfo';
 import PendingComp from './pages/Pending';
 import InprogressComp from './pages/Inprogress';
+import UprocessComp from './pages/UnderProcess';
 import CompletedComp from './pages/Completed';
 import UserFeedback from './userpages/Feedback';
 import PostComp from './userpages/PostComp';
@@ -25,6 +27,11 @@ import FacFeedback from './facpages/Feedback';
 import FPostComp from './facpages/PostComp';
 import FModComp from './facpages/ModComp';
 import FViewComp from './facpages/ViewComp';
+import IFacFeedback from './infacpages/Feedback';
+import IFPostComp from './infacpages/PostComp';
+import IFModComp from './infacpages/ModComp';
+import IFViewComp from './infacpages/ViewComp';
+import Work from './infacpages/work';
 import Home from './home';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 
@@ -43,12 +50,14 @@ function App() {
         <Route path='/uview' component={Uvw} />
         <Route path='/aview' component={Avw} />
         <Route path='/fview' component={Fvw} />
+        <Route path='/infview' component={IFvw} />
         <Route path='/addInfo' component={Addinfo} />
         <Route path='/deleteInfo' component={Deleteinfo} />
         <Route path='/feedback' component={Feedback} />
         <Route path='/updateInfo' component={Updateinfo} />
         <Route path='/pending' component={PendingComp} />
         <Route path='/progress' component={InprogressComp} />
+        <Route path='/uprocess' component={UprocessComp} />
         <Route path='/completed' component={CompletedComp} />
         <Route path='/postcomp' component={PostComp} />
         <Route path='/modcomp' component={ModComp} />
@@ -58,6 +67,11 @@ function App() {
         <Route path='/modcompf' component={FModComp} />
         <Route path='/viewcompf' component={FViewComp} />
         <Route path='/facfeedback' component={FacFeedback} />
+        <Route path='/postcompif' component={IFPostComp} />
+        <Route path='/modcompif' component={IFModComp} />
+        <Route path='/viewcompif' component={IFViewComp} />
+        <Route path='/ifacfeedback' component={IFacFeedback} />
+        <Route path='/work' component={Work} />
         <Route path='/' component={Home} />
       </Switch>
     </Router>

@@ -19,6 +19,63 @@
   font-size: 3rem;
 }
 
+.background {
+    background-color: grey;
+    background-blend-mode: darken;
+    background-size: cover;
+}
+ 
+.firstsection {
+    height: 50vh;
+}
+
+.box-main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    max-width: 80%;
+    margin: auto;
+    height: 90%;
+}
+ 
+.firstHalf {
+    width: 75%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.text-big {
+    font-family: "Piazzolla", serif;
+    font-weight: bold;
+    font-size: 30px;
+    text-align: center;
+}
+ 
+.text-small {
+    font-size: 18px;
+    text-align: center;
+}
+
+.center {
+    text-align: center;
+}
+
+.detail{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+ 
+.detail .box {
+    width: 300px;
+    margin: 8px 20px 8px 20px;
+    padding: 10px;
+    border: 2px solid #6C6C6C;
+    border-radius: 14px;
+}
+
 .showHide{
     justify-content: center;
     align-items: center;
@@ -37,7 +94,8 @@
     border-collapse: collapse;
     border: 2px solid #dddddd;
     width: 540px;
-    margin-left: 237px;
+    margin-left: auto;
+    margin-right: auto;
     font-size: 15px;
     justify-content: center;
     align-items: center;
@@ -110,7 +168,7 @@
 
 .addinfocontainer{
     background: #222D32; 
-    height: 250vh;
+    height: 265vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -120,7 +178,7 @@
 .addinfosubcontainer{
     background-color: #1A2226;
     width: 400px;
-    height: 1060px;
+    height: 1155px;
     padding: 30px;
     margin-top: 5%;
     box-sizing: border-box;
@@ -288,6 +346,22 @@
 }
 .ddi:hover{
     background-color: #6C6C6C;
+}
+.ddmselect{
+    display: flex;
+    flex-direction: row;
+    position: fixed;
+    right: 0;
+    margin-right: 10px;
+    margin-top: 5px;
+}
+.ddtselect{
+    margin-top: 5px;
+    width: 150px;
+}
+.ddmmselect{
+    width: 150px;
+    background-color: #222D32;
 }
 
 .password{
