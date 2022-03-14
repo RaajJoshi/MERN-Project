@@ -11,7 +11,7 @@ import Axios from 'axios';
 const Nav = styled.div`
   background: #15171c;
   height: 50px;
-  width: 1040px;
+  width: 100%;
   display: flex;
   position: fixed;
   justify-content: flex-start;
@@ -61,7 +61,7 @@ const Sidebar = () => {
   
   useEffect(() => {
     let data = [];
-    data = JSON.parse(localStorage.getItem("userInfo"));
+    data = JSON.parse(localStorage.getItem("facInfo"));
     const uid = data[2];
     Axios.get(`/readfacbyid/${uid}`, {
     }).then((response) => {

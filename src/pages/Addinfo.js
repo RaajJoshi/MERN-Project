@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Dropdown } from 'react-bootstrap';
 import Valdt from './valaddinfo';
 import ValdtClass from './validationinfoclass';
 import Sidebar from '../components/Sidebar';
@@ -20,6 +21,9 @@ const Addinfo = () => {
         lightno: '',
         ethr: '',
         projc: '',
+        projno: '',
+        projnm1: '',
+        projnm2: '',
         Incharge: ''
     }]);
 
@@ -29,7 +33,8 @@ const Addinfo = () => {
         benchno: '',
         fannno: '',
         tubelightno: '',
-        projec: ''
+        projec: '',
+        Inchargeclass: ''
     }]);
 
     const [errors, setErrors] = useState({});
@@ -57,36 +62,125 @@ const Addinfo = () => {
     const postDataLab = async (e) => {
         e.preventDefault();
         setErrors(Valdt(valuesLab));
-        const { labno, pcno, chrno, acno, fanno, lightno, ethr, projc, Incharge } = valuesLab;
-        try {
-            const config = {
-                headers: {
-                    "Content-Type": "application/json"
+        if (valuesLab.projc === 'no') {
+            const { labno, pcno, chrno, acno, fanno, lightno, ethr, projc, Incharge } = valuesLab;
+            try {
+                const config = {
+                    headers: {
+                        "Content-Type": "application/json"
+                    }
+                };
+                const { data } = await Axios.post(
+                    "/addreso",
+                    {
+                        labno,
+                        pcno,
+                        chrno,
+                        acno,
+                        fanno,
+                        lightno,
+                        ethr,
+                        projc,
+                        Incharge,
+                    },
+                    config
+                );
+                setErr('');
+                setMess('Add LAB successfully');
+                setValuesLab({ labno: '', pcno: '', chrno: '', acno: '', fanno: '', lightno: '', ethr: '', projc: '', Incharge: '' });
+                console.log(data);
+            } catch (errors) {
+                console.log("Error");
+                setMess('');
+                setErr('Invalid Information');
+            }
+        } else {
+            if (!valuesLab.projno) {
+                setErrors({ ...errors, projno: "Plz, select option." });
+            }
+            if (valuesLab.projno === '1') {
+                if (!valuesLab.projnm1) {
+                    setErrors({ ...errors, projnm1: "This field is required." });
+                } else {
+                    const { labno, pcno, chrno, acno, fanno, lightno, ethr, projc, projno, projnm1, Incharge } = valuesLab;
+                    try {
+                        const config = {
+                            headers: {
+                                "Content-Type": "application/json"
+                            }
+                        };
+                        const { data } = await Axios.post(
+                            "/addreso",
+                            {
+                                labno,
+                                pcno,
+                                chrno,
+                                acno,
+                                fanno,
+                                lightno,
+                                ethr,
+                                projc,
+                                projno,
+                                projnm1,
+                                Incharge,
+                            },
+                            config
+                        );
+                        setErr('');
+                        setMess('Add LAB successfully');
+                        setValuesLab({ labno: '', pcno: '', chrno: '', acno: '', fanno: '', lightno: '', ethr: '', projc: '', projno: '', projnm1: '', Incharge: '' });
+                        console.log(data);
+                    } catch (errors) {
+                        console.log("Error");
+                        setMess('');
+                        setErr('Invalid Information');
+                    }
                 }
-            };
-            const { data } = await Axios.post(
-                "/addreso",
-                {
-                    labno,
-                    pcno,
-                    chrno,
-                    acno,
-                    fanno,
-                    lightno,
-                    ethr,
-                    projc,
-                    Incharge,
-                },
-                config
-            );
-            setErr('');
-            setMess('Add LAB successfully');
-            setValuesLab({ labno: '', pcno: '', chrno: '', acno: '', fanno: '', lightno: '', ethr: '', projc: '', Incharge: '' });
-            console.log(data);
-        } catch (errors) {
-            console.log("Error");
-            setMess('');
-            setErr('Invalid Information');
+            }
+            else if (valuesLab.projno === '2') {
+                if (!valuesLab.projnm1) {
+                    setErrors({ ...errors, projnm1: "This field is required." });
+                } else {
+                    if (!valuesLab.projnm2) {
+                        setErrors({ ...errors, projnm2: "This field is required." });
+                    } else {
+                        const { labno, pcno, chrno, acno, fanno, lightno, ethr, projc, projno, projnm1, projnm2, Incharge } = valuesLab;
+                        try {
+                            const config = {
+                                headers: {
+                                    "Content-Type": "application/json"
+                                }
+                            };
+                            const { data } = await Axios.post(
+                                "/addreso",
+                                {
+                                    labno,
+                                    pcno,
+                                    chrno,
+                                    acno,
+                                    fanno,
+                                    lightno,
+                                    ethr,
+                                    projc,
+                                    projno,
+                                    projnm1,
+                                    projnm2,
+                                    Incharge,
+                                },
+                                config
+                            );
+                            setErr('');
+                            setMess('Add LAB successfully');
+                            setValuesLab({ labno: '', pcno: '', chrno: '', acno: '', fanno: '', lightno: '', ethr: '', projc: '', projno: '', projnm1: '', projnm2: '', Incharge: '' });
+                            console.log(data);
+                        } catch (errors) {
+                            console.log("Error");
+                            setMess('');
+                            setErr('Invalid Information');
+                        }
+                    }
+                }
+            }
         }
     };
 
@@ -94,7 +188,7 @@ const Addinfo = () => {
     const postDataClassroom = async (e) => {
         e.preventDefault();
         setErrors(ValdtClass(valuesClass));
-        const { classno, benchno, fannno, tubelightno, projec } = valuesClass;
+        const { classno, benchno, fannno, tubelightno, projec, Inchargeclass } = valuesClass;
         try {
             const config = {
                 headers: {
@@ -109,12 +203,13 @@ const Addinfo = () => {
                     fannno,
                     tubelightno,
                     projec,
+                    Inchargeclass,
                 },
                 config
             );
             setErr('');
             setMess('Add Classroom successfully');
-            setValuesClass({ classno: '', benchno: '', fannno: '', tubelightno: '', projec: '' });
+            setValuesClass({ classno: '', benchno: '', fannno: '', tubelightno: '', projec: '', Inchargeclass: '' });
             console.log(data);
         } catch (errors) {
             console.log("Error");
@@ -265,6 +360,67 @@ const Addinfo = () => {
                                                 </label>
                                                 {errors.projc && <p className='error'>{errors.projc}</p>}
                                             </div>
+                                            {(() => {
+                                                if (valuesLab.projc === 'yes') {
+                                                    return (
+                                                        <div className='fanno'>
+                                                            <label htmlFor="projno">Number of Projector</label>
+                                                            <Dropdown value={valuesLab.projno} name='projno'>
+                                                                <Dropdown.Toggle className='ddt' variant="secondary" id="dropdown-basic">
+                                                                    Projectors : {valuesLab.projno}
+                                                                </Dropdown.Toggle>
+                                                                <Dropdown.Menu className='ddm'>
+                                                                    <Dropdown.Item className='ddi' onClick={() => setValuesLab({ ...valuesLab, projno: '1' })}>1</Dropdown.Item>
+                                                                    <Dropdown.Item className='ddi' onClick={() => setValuesLab({ ...valuesLab, projno: '2' })}>2</Dropdown.Item>
+                                                                </Dropdown.Menu>
+                                                            </Dropdown>
+                                                            {errors.projno && <p className='error'>{errors.projno}</p>}
+                                                        </div>                                                      
+                                                    );
+                                                }
+                                            })()}
+                                            {(() => {
+                                                if (valuesLab.projc === 'yes' && valuesLab.projno === '1') {
+                                                    return (
+                                                        <div className='fanno'>
+                                                            <label htmlFor="projnm1">Company</label>
+                                                            <input type="text" name="projnm1"
+                                                                value={valuesLab.projnm1}
+                                                                onChange={changeHandleRadio}
+                                                                className='input'
+                                                                autoComplete='off'
+                                                            />
+                                                            {errors.projnm1 && <p className='error'>{errors.projnm1}</p>}
+                                                        </div>
+                                                    );
+                                                }
+                                                else if (valuesLab.projc === 'yes' && valuesLab.projno === '2') {
+                                                    return (
+                                                        <>
+                                                            <div className='fanno'>
+                                                                <label htmlFor="projnm1">Company</label>
+                                                                <input type="text" name="projnm1"
+                                                                    value={valuesLab.projnm1}
+                                                                    onChange={changeHandleRadio}
+                                                                    className='input'
+                                                                    autoComplete='off'
+                                                                />
+                                                                {errors.projnm1 && <p className='error'>{errors.projnm1}</p>}
+                                                            </div>
+                                                            <div className='fanno'>
+                                                                <label htmlFor="projnm2">Company</label>
+                                                                <input type="text" name="projnm2"
+                                                                    value={valuesLab.projnm2}
+                                                                    onChange={changeHandleRadio}
+                                                                    className='input'
+                                                                    autoComplete='off'
+                                                                />
+                                                                {errors.projnm2 && <p className='error'>{errors.projnm2}</p>}
+                                                            </div>
+                                                        </>
+                                                    );
+                                                }
+                                            })()}
                                             <div className='lightno'>
                                                 <label htmlFor="Incharge">Faculty Incharge</label>
                                                 <input type="text" name="Incharge"
@@ -354,6 +510,16 @@ const Addinfo = () => {
                                                         onClick={changeHandleRadio} />
                                                 </label>
                                                 {errors.projec && <p className='error'>{errors.projec}</p>}
+                                            </div>
+                                            <div className='lightno'>
+                                                <label htmlFor="Inchargeclass">Faculty Incharge</label>
+                                                <input type="text" name="Inchargeclass"
+                                                    value={valuesClass.Inchargeclass}
+                                                    onChange={changeHandleRadio}
+                                                    className='input'
+                                                    autoComplete='off'
+                                                />
+                                                {errors.Inchargeclass && <p className='error'>{errors.Inchargeclass}</p>}
                                             </div>
                                             <div>
                                                 <button type='submit' name='class' onClick={postDataClassroom} className="submit">Add</button>

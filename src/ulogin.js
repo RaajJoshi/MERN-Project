@@ -1,25 +1,34 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import Valdt from './validation';
-import { useHistory } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Axios from 'axios';
+import { UserContext } from './App';
+import * as AiIcons from 'react-icons/ai';
 
 
 export const Ulogin = () => {
-    let history = useHistory();
+
+    const navigate = useNavigate();
+
+    const { state, dispatch } = useContext(UserContext);
+
+    const [pass, setPass] = useState(false);
+
 
     useEffect(() => {
-      const userInfo = localStorage.getItem("userInfo");
-      if(userInfo) {
-          history.push("/uview");
-      }
-      
-    }, [history]);
-    
-    
+        const userInfo = localStorage.getItem("userInfo");
+        if (userInfo) {
+            <Navigate to="/uview" />;
+        }
+
+    }, []);
+
+
     const [userID, setUserID] = useState('');
     const [password, setPassword] = useState('');
     const [err, setErr] = useState('');
-    
+
     const [errors, setErrors] = useState({});
 
     const resetHandle = (e) => {
@@ -28,16 +37,16 @@ export const Ulogin = () => {
         setPassword('');
     }
 
-    const checkData= async (e)=>{
+    const checkData = async (e) => {
         e.preventDefault();
-        setErrors(Valdt({userID,password}));
-        try{
+        setErrors(Valdt({ userID, password }));
+        try {
             const config = {
-                headers:{
+                headers: {
                     "Content-Type": "application/json"
                 }
             };
-            const {data} = await Axios.post(
+            const { data } = await Axios.post(
                 "/usrlogin",
                 {
                     userID,
@@ -45,17 +54,18 @@ export const Ulogin = () => {
                 },
                 config
             );
-            localStorage.setItem("userInfo",JSON.stringify(data));
+            localStorage.setItem("userInfo", JSON.stringify(data));
+            dispatch({ type: 'USER', payload: true });
             setUserID('');
             setPassword('');
             console.log(data);
-            history.push("/uview");
-        } catch(errors){
+            navigate("/uview");
+        } catch (errors) {
             console.log("Error");
-            setErr('Invalid Credential');           
+            setErr('Invalid Credential');
         }
     };
-    
+
 
     return (
         <div className='ucontainer'>
@@ -69,7 +79,7 @@ export const Ulogin = () => {
                         <label htmlFor="userID">UserID</label>
                         <input type="text" name="uid"
                             value={userID}
-                            onChange={(e)=>setUserID(e.target.value)}
+                            onChange={(e) => setUserID(e.target.value)}
                             className='input'
                             autoComplete='off'
                         />
@@ -77,12 +87,16 @@ export const Ulogin = () => {
                     </div>
                     <div className='password'>
                         <label htmlFor="password">password</label>
-                        <input type="password" name="password"
-                            value={password}
-                            onChange={(e)=>setPassword(e.target.value)}
-                            className='input'
-                            autoComplete='off'
-                        />
+                        <div className='password-icon'>
+                            <input type={pass ? "text" : "password"} name="password"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                                className='input'
+                                autoComplete='off'
+                            />
+                            {!pass && <AiIcons.AiFillEye className='eye' onClick={() => setPass(!pass)} />}
+                            {pass && <AiIcons.AiFillEyeInvisible className='eye' onClick={() => setPass(!pass)} />}
+                        </div>
                         {errors.password && <p className='error'>{errors.password}</p>}
                     </div>
                     <div>
@@ -91,7 +105,7 @@ export const Ulogin = () => {
                     <div>
                         <button type='btn' className="rstbtn" onClick={resetHandle}>cancel</button>
                         <button onClick={() => {
-                            history.push("/reg");
+                            navigate("/reg");
                         }} className='logtoreg'>new user??</button>
                     </div>
                 </form>

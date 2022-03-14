@@ -11,7 +11,7 @@ import Axios from 'axios';
 const Nav = styled.div`
   background: #15171c;
   height: 50px;
-  width: 1040px;
+  width: 100%;
   display: flex;
   position: fixed;
   justify-content: flex-start;

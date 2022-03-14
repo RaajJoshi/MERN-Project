@@ -1,10 +1,11 @@
-import React from 'react';
-
+import React, { createContext, useReducer } from 'react';
 import './App.css';
+//import Protected from './Protected';
 import Navbar from './firstpage';
 import Ulogin from './ulogin';
 import Alogin from './alogin';
 import Flogin from './flogin';
+import Lout from './logout';
 import Reg from './reg';
 import Abt from './about';
 import Uvw from './uview';
@@ -12,6 +13,7 @@ import Avw from './aview';
 import Fvw from './fview';
 import IFvw from './infview';
 import Addinfo from './pages/Addinfo';
+import AddSt from './pages/mngstdnts';
 import Deleteinfo from './pages/DeleteInfo';
 import Feedback from './pages/feedback';
 import Updateinfo from './pages/Updateinfo';
@@ -33,49 +35,68 @@ import IFModComp from './infacpages/ModComp';
 import IFViewComp from './infacpages/ViewComp';
 import Work from './infacpages/work';
 import Home from './home';
-import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import FP from './forgot';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { initialState, reducer } from './UseReducer';
 
+export const UserContext = createContext();
 
 
 function App() {
+
+  const [state, dispatch] = useReducer(reducer, initialState);
+
+
   return (
-    <Router>
-      <Navbar />
-      <Switch>
-        <Route path='/ulogin' component={Ulogin} />
-        <Route path='/reg' component={Reg} />
-        <Route path='/alogin' component={Alogin} />
-        <Route path='/flogin' component={Flogin} />
-        <Route path='/about' component={Abt} />
-        <Route path='/uview' component={Uvw} />
-        <Route path='/aview' component={Avw} />
-        <Route path='/fview' component={Fvw} />
-        <Route path='/infview' component={IFvw} />
-        <Route path='/addInfo' component={Addinfo} />
-        <Route path='/deleteInfo' component={Deleteinfo} />
-        <Route path='/feedback' component={Feedback} />
-        <Route path='/updateInfo' component={Updateinfo} />
-        <Route path='/pending' component={PendingComp} />
-        <Route path='/progress' component={InprogressComp} />
-        <Route path='/uprocess' component={UprocessComp} />
-        <Route path='/completed' component={CompletedComp} />
-        <Route path='/postcomp' component={PostComp} />
-        <Route path='/modcomp' component={ModComp} />
-        <Route path='/viewcomp' component={ViewComp} />
-        <Route path='/usrfeedback' component={UserFeedback} />
-        <Route path='/postcompf' component={FPostComp} />
-        <Route path='/modcompf' component={FModComp} />
-        <Route path='/viewcompf' component={FViewComp} />
-        <Route path='/facfeedback' component={FacFeedback} />
-        <Route path='/postcompif' component={IFPostComp} />
-        <Route path='/modcompif' component={IFModComp} />
-        <Route path='/viewcompif' component={IFViewComp} />
-        <Route path='/ifacfeedback' component={IFacFeedback} />
-        <Route path='/work' component={Work} />
-        <Route path='/' component={Home} />
-      </Switch>
-    </Router>
+    <UserContext.Provider value={{ state, dispatch }}>
+      <Router>
+        <Navbar />
+        <Routes>
+          <Route path='/ulogin' element={<Ulogin />} />
+          <Route path='/reg' element={<Reg />} />
+          <Route path='/alogin' element={<Alogin />} />
+          <Route path='/flogin' element={<Flogin />} />
+          <Route path='/logout' element={<Lout />} />
+          <Route path='/about' element={<Abt />} />
+          <Route path='/home' element={<Home />} />
+          
+            <Route path='/uview' element={<Uvw />} />
+            <Route path='/postcomp' element={<PostComp />} />
+            <Route path='/modcomp' element={<ModComp />} />
+            <Route path='/viewcomp' element={<ViewComp />} />
+            <Route path='/usrfeedback' element={<UserFeedback />} />
+          
+            <Route path='/fview' element={<Fvw />} />
+            <Route path='/infview' element={<IFvw />} />
+            <Route path='/postcompf' element={<FPostComp />} />
+            <Route path='/modcompf' element={<FModComp />} />
+            <Route path='/viewcompf' element={<FViewComp />} />
+            <Route path='/facfeedback' element={<FacFeedback />} />
+            <Route path='/postcompif' element={<IFPostComp />} />
+            <Route path='/modcompif' element={<IFModComp />} />
+            <Route path='/viewcompif' element={<IFViewComp />} />
+            <Route path='/ifacfeedback' element={<IFacFeedback />} />
+            <Route path='/work' element={<Work />} />
+          
+            <Route path='/aview' element={<Avw />} />
+            <Route path='/addInfo' element={<Addinfo />} />
+            <Route path='/mngstdnts' element={<AddSt />} />
+            <Route path='/deleteInfo' element={<Deleteinfo />} />
+            <Route path='/feedback' element={<Feedback />} />
+            <Route path='/updateInfo' element={<Updateinfo />} />
+            <Route path='/pending' element={<PendingComp />} />
+            <Route path='/progress' element={<InprogressComp />} />
+            <Route path='/uprocess' element={<UprocessComp />} />
+            <Route path='/completed' element={<CompletedComp />} />
+          
+          
+          <Route path='/forgot' element={<FP />} />
+          <Route path='/' element={<Home />} />
+        </Routes>
+      </Router>
+    </UserContext.Provider>
   );
+
 }
 
 export default App;

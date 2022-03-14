@@ -47,9 +47,11 @@ const Feedabck = () => {
             <div className='addinfocontainer'>
                 {mess && <div id='errinfo' className="alert alert-success" role="alert">{mess}</div>}
                 <div className='addinfosubcontainer'>
+                    <div>
+                      <h2 className='title'>FEEDBACK</h2>
+                    </div>
                     <form method='POST'>
                         <div className='feedback'>
-                            <label htmlFor="feedback">Feedabck</label>
                             <textarea name="feedback"
                                 value={feedback}
                                 onChange={(e)=>setFeedback(e.target.value)}

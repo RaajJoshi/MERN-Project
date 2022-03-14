@@ -1,25 +1,22 @@
 import React, { useState, useEffect } from 'react'
 import Sidebar from '../faccomponents/Sidebar';
 import Axios from 'axios';
-/*
-<div className='updateinfocontainer'>
-            <div className='updateinfosubcontainer'>
-                <h3>No Complains...</h3>
-            </div>
-        </div>
-*/
+import { Dropdown } from 'react-bootstrap';
+import * as BsIcons from 'react-icons/bs';
+import * as ImIcons from 'react-icons/im';
+import { IconContext } from 'react-icons/lib';
+import { Link } from 'react-router-dom';
 
 const ViewComp = () => {
 
 
     const [finalValue, setFinalValue] = useState([]);
 
-    const [finalValueClass, setFinalValueClass] = useState([]);
+    const [type, setType] = useState('All');
 
     let data = [];
-    data = JSON.parse(localStorage.getItem("userInfo"));
+    data = JSON.parse(localStorage.getItem("facInfo"));
     const uid = data[2];
-    console.log(uid);
 
     useEffect(() => {
 
@@ -30,57 +27,116 @@ const ViewComp = () => {
             .catch(() => {
                 console.log("error");
             });
+
     }, []);
 
-    useEffect(() => {
-        Axios.get(`/readcompbyidclass/${uid}`, {
-        }).then((response) => {
-            setFinalValueClass(response.data)
-        })
-            .catch(() => {
-                console.log("error");
-            });
-    }, [])
 
 
     return (
         <>
             <Sidebar />
             <div className='updateinfocontainer'>
+                <div className='ddmselect'>
+                    <Dropdown value={type} name='type'>
+                        <Dropdown.Toggle className='ddtselect' variant="secondary" id="dropdown-basic">
+                            <IconContext.Provider value={{ color: 'white' }}>
+                                <BsIcons.BsFilterSquare />&nbsp;&nbsp;Filter By&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            </IconContext.Provider>
+                        </Dropdown.Toggle>
+                        <Dropdown.Menu className='ddmmselect'>
+                            <Dropdown.Item className='ddi' onClick={() => setType('All')}>All</Dropdown.Item>
+                            <Dropdown.Item className='ddi' onClick={() => setType('Lab')}>Lab</Dropdown.Item>
+                            <Dropdown.Item className='ddi' onClick={() => setType('Classroom')}>Classroom</Dropdown.Item>
+                        </Dropdown.Menu>
+                    </Dropdown>
+                </div>
                 {finalValue.map((val) => {
-                    return (
-                        <div className='main'>
-                            <div className='labtitle'>
-                                <h3>Lab No : {val.resno}</h3>
-                            </div>
-                            <div className='mancomp'>
-                                <div className='updateinfosubcontainer'>
-                                    {/*<h3>{val.comptype}{"  "}</h3>*/}
-                                    <h3>Equipment : {val.eqtype}{"  "}</h3>
-                                    <h3>Description : {val.abeq}{"  "}</h3>
-                                    <h3>STATUS : {val.status}</h3>
+                    if (type === 'All') {
+                        if (val.comptype === 'lab') {
+                            return (
+                                <div className='main'>
+                                    <div className='labtitle'>
+                                        <h3>Lab No : {val.resno}</h3>
+                                    </div>
+                                    <div className='mancomp'>
+                                        <div className='updateinfosubcontainer'>
+                                            {/*<h3>{val.comptype}{"  "}</h3>*/}
+                                            <h3>Equipment : {val.eqtype}{"  "}</h3>
+                                            <h3>Description : {val.abeq}{"  "}</h3>
+                                            <h3>STATUS : {val.status}</h3>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                    );
+                            );
+                        } else {
+                            return (
+                                <div className='main'>
+                                    <div className='labtitle'>
+                                        <h3>Classroom No : {val.resno}</h3>
+                                    </div>
+                                    <div className='mancomp'>
+                                        <div className='updateinfosubcontainer'>
+                                            <h3>Equipment : {val.eqtype}{"  "}</h3>
+                                            <h3>Description : {val.abeq}{"  "}</h3>
+                                            <h3>STATUS : {val.status}</h3>
+                                        </div>
+                                    </div>
+                                </div>
+                            );
+                        }
+                    } else if (type === 'Lab') {
+                        if (val.comptype === 'lab') {
+                            return (
+                                <div className='main'>
+                                    <div className='labtitle'>
+                                        <h3>Lab No : {val.resno}</h3>
+                                    </div>
+                                    <div className='mancomp'>
+                                        <div className='updateinfosubcontainer'>
+                                            {/*<h3>{val.comptype}{"  "}</h3>*/}
+                                            <h3>Equipment : {val.eqtype}{"  "}</h3>
+                                            <h3>Description : {val.abeq}{"  "}</h3>
+                                            <h3>STATUS : {val.status}</h3>
+                                        </div>
+                                    </div>
+                                </div>
+                            );
+                        }
+                    } else {
+                        if (val.comptype === 'classroom') {
+                            return (
+                                <div className='main'>
+                                    <div className='labtitle'>
+                                        <h3>Classroom No : {val.resno}</h3>
+                                    </div>
+                                    <div className='mancomp'>
+                                        <div className='updateinfosubcontainer'>
+                                            <h3>Equipment : {val.eqtype}{"  "}</h3>
+                                            <h3>Description : {val.abeq}{"  "}</h3>
+                                            <h3>STATUS : {val.status}</h3>
+                                        </div>
+                                    </div>
+                                </div>
+                            );
+                        }
+                    }
+
                 })}
 
-                {finalValueClass.map((val) => {
-                    return (
-                        <div className='main'>
-                            <div className='labtitle'>
-                                <h3>Classroom No : {val.resno}</h3>
+                {(() => {
+                    if (finalValue.length === 0) {
+                        return (
+                            <div className='nocomp'>
+                                <IconContext.Provider value={{ className: 'icons' }}>
+                                    <ImIcons.ImFilesEmpty /><br /><br />
+                                    <h2>No Complains!!!</h2>
+                                    <h3>Want to Raise?? <Link style={{ textDecoration: 'none', color: 'hsl(29, 100%, 49%)' }} to={'/postcompf'}>Click Here</Link></h3>
+                                </IconContext.Provider>
                             </div>
-                            <div className='mancomp'>
-                                <div className='updateinfosubcontainer'>
-                                    <h3>Equipment : {val.eqtype}{"  "}</h3>
-                                    <h3>Description : {val.abeq}{"  "}</h3>
-                                    <h3>STATUS : {val.status}</h3>
-                                </div>
-                            </div>
-                        </div>
-                    );
-                })}
+                        );
+                    }
+                })()}
+
             </div>
         </>
     );

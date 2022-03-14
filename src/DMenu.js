@@ -12,9 +12,6 @@ const SidebarLink = styled(Link)`
   height: 30px;
   text-decoration: none;
   font-size: 12px;
-  &.active{
-    color: black;
-    };
   &:hover {
     background: #252831;
     border-left: 4px solid #15cdfc;

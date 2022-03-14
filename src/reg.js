@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Valdt from './validationreg';
 import Axios from 'axios';
+import * as AiIcons from 'react-icons/ai';
 
 const Reg = () => {
 
-    let history = useHistory();
+    const navigate = useNavigate();
 
     const [err, setErr] = useState('');
     const [mess, setMess] = useState('');
@@ -70,7 +71,7 @@ const Reg = () => {
             setMess('Registered successfully');
             setValuesReg({ fname: '', lname: '', userID: '', email: '', phone: '', password: '', cnfpasswd: '' });
             console.log(data);
-            history.push("/ulogin");
+            navigate("/ulogin");
         } catch (errors) {
             console.log("Error");
             setMess('');
@@ -147,26 +148,32 @@ const Reg = () => {
                     </div>
                     <div className='password'>
                         <label htmlFor="password">password</label>
-                        <input type={pass ? "text" : "password"} name="password"
-                            value={valuesReg.password}
-                            onChange={changeHandle}
-                            className='input'
-                            autoComplete='off'
-                            required
-                        />
-                        <i className='fa fa-eye password-icon' onClick={()=>setPass(!pass)} />
+                        <div className='password-icon'>
+                            <input type={pass ? "text" : "password"} name="password"
+                                value={valuesReg.password}
+                                onChange={changeHandle}
+                                className='input'
+                                autoComplete='off'
+                                required
+                            />
+                            {!pass && <AiIcons.AiFillEye className='eye' onClick={() => setPass(!pass)} />}
+                            {pass && <AiIcons.AiFillEyeInvisible className='eye' onClick={() => setPass(!pass)} />}
+                        </div>
                         {errors.password && <p className='error'>{errors.password}</p>}
                     </div>
                     <div className='cnfpassword'>
                         <label htmlFor="cnfpasswd">Confirm password</label>
-                        <input type={cnpass ? "text" : "password"} name="cnfpasswd"
-                            value={valuesReg.cnfpasswd}
-                            onChange={changeHandle}
-                            className='input'
-                            autoComplete='off'
-                            required
-                        />
-                        <i id='cpass' className='fa fa-eye password-icon' onClick={()=>setCnpass(!cnpass)} />
+                        <div className='password-icon'>
+                            <input type={cnpass ? "text" : "password"} name="cnfpasswd"
+                                value={valuesReg.cnfpasswd}
+                                onChange={changeHandle}
+                                className='input'
+                                autoComplete='off'
+                                required
+                            />
+                            {!cnpass && <AiIcons.AiFillEye className='eye' onClick={() => setCnpass(!pass)} />}
+                            {cnpass && <AiIcons.AiFillEyeInvisible className='eye' onClick={() => setCnpass(!pass)} />}
+                        </div>
                         {errors.cnfpasswd && <p className='error'>{errors.cnfpasswd}</p>}
                     </div>
                     <div>
@@ -175,7 +182,7 @@ const Reg = () => {
                     <div>
                         <button type='btn' className="rstbtn" onClick={resetHandle}>cancel</button>
                         <button onClick={() => {
-                            history.push("/ulogin");
+                            navigate("/ulogin");
                         }} className='regtolog'>already account??</button>
                     </div>
                 </form>

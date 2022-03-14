@@ -1,34 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
 import Sidebar from '../components/Sidebar';
+import * as ImIcons from 'react-icons/im';
+import { IconContext } from 'react-icons/lib';
+
 
 const Feedabck = () => {
-
-    /*
-    const [feedback, setFeedback] = useState('');
-
-    const postFeedback = async (e) => {
-        e.preventDefault();
-        //setErrors(Valdt({email,password}));
-        try{
-            const config = {
-                headers:{
-                    "Content-Type": "application/json"
-                }
-            };
-            const {data} = await Axios.post(
-                "/feedback",
-                {
-                    feedback,
-                },
-                config
-            );
-            console.log(data);
-        } catch(errors){
-            console.log("Error");
-        }
-    };
-    */
 
     const [finalValue, setFinalValue] = useState([]);
 
@@ -44,32 +21,6 @@ const Feedabck = () => {
     }, []);
 
     return (
-        /*
-        <>
-            <Sidebar />
-            <div className='addinfocontainer'>
-                <div className='addinfosubcontainer'>
-                    <form method='POST'>
-                        <div className='feedback'>
-                            <label htmlFor="feedback">Feedabck</label>
-                            <textarea name="feedback"
-                                value={feedback}
-                                onChange={(e)=>setFeedback(e.target.value)}
-                                className='inputtxt'
-                                placeholder='Enter your Feedback...'
-                                autoComplete='off'
-                            />
-                            {errors.labno && <p className='error'>{errors.labno}</p>}
-                        </div>
-                        <div>
-                            <button type='submit' onClick={postFeedback} className="submit">Submit feedback</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </>
-        */
-
         <>
             <Sidebar />
             <div className='feedbackcontainer'>
@@ -88,6 +39,21 @@ const Feedabck = () => {
                         </div>
                     );
                 })}
+
+                {(() => {
+                    if (finalValue.length === 0) {
+                        return (
+                            <div className='nocomp'>
+                                <IconContext.Provider value={{ className: 'icons' }}>
+                                    <ImIcons.ImFilesEmpty /><br /><br />
+                                    <h2>No Feedbacks...</h2>
+                                </IconContext.Provider>
+                            </div>
+                        );
+                    }
+                })()}
+
+
             </div>
         </>
     );

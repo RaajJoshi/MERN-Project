@@ -1,10 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState,useContext } from 'react';
 import Valdt from './validation';
-import {useHistory} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Axios from 'axios';
+import { UserContext } from './App';
+import * as AiIcons from 'react-icons/ai';
+
 
 export const Alogin = () => {
-    let history = useHistory();
+
+    const navigate = useNavigate();
+
+    const {state, dispatch} = useContext(UserContext);
+
+    const [pass, setPass] = useState(false);
+
 
     const [userID, setUserID] = useState('');
     const [password, setPassword] = useState('');
@@ -35,11 +44,12 @@ export const Alogin = () => {
                 },
                 config
             );
-            localStorage.setItem("userInfo",JSON.stringify(data));
+            localStorage.setItem("admnInfo",JSON.stringify(data));
+            dispatch({type:'USER',payload:true});
             setUserID('');
             setPassword('');
             console.log(data);
-            history.push("/aview");
+            navigate("/aview");
         } catch(errors){
             console.log("Error");
             setErr('Invalid Credential');           
@@ -66,12 +76,16 @@ export const Alogin = () => {
                     </div>
                     <div className='admnpassword'>
                         <label htmlFor="password">password</label>
-                        <input type="password" name="password"
+                        <div className='password-icon'>
+                        <input type={pass ? "text" : "password"} name="password"
                             value={password}
                             onChange={(e)=>setPassword(e.target.value)}
                             className='admninput'
                             autoComplete='off'
                         />
+                        {!pass && <AiIcons.AiFillEye className='eye' onClick={() => setPass(!pass)} />}
+                        {pass && <AiIcons.AiFillEyeInvisible className='eye' onClick={() => setPass(!pass)} />}
+                        </div>
                         {errors.password && <p className='admnerror'>{errors.password}</p>}
                     </div>
                     <div>

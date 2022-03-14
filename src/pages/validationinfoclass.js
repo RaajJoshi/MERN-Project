@@ -15,7 +15,10 @@ const ValidationinfoClass = (valuesClass) => {
     }
     if(!valuesClass.projec){
         errors.projec = "Please, choose option.";
-    } 
+    }
+    if(!valuesClass.Inchargeclass){
+        errors.Inchargeclass = "This field is required.";
+    }
   return errors;
 };
 

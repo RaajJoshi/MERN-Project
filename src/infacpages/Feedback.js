@@ -9,7 +9,7 @@ const Feedabck = () => {
     const [errors, setErrors] = useState({});
     const [mess, setMess] = useState('');
     let data = [];
-    data = JSON.parse(localStorage.getItem("userInfo"));
+    data = JSON.parse(localStorage.getItem("facInfo"));
     const uid = data[2];
     const fname = data[3];
     const lname = data[4];
@@ -47,9 +47,11 @@ const Feedabck = () => {
             <div className='addinfocontainer'>
                 {mess && <div id='errinfo' className="alert alert-success" role="alert">{mess}</div>}
                 <div className='addinfosubcontainer'>
+                    <div>
+                      <h2 className='title'>FEEDBACK</h2>
+                    </div>
                     <form method='POST'>
                         <div className='feedback'>
-                            <label htmlFor="feedback">Feedabck</label>
                             <textarea name="feedback"
                                 value={feedback}
                                 onChange={(e)=>setFeedback(e.target.value)}

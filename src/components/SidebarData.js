@@ -1,5 +1,6 @@
 import React from 'react';
 import * as IoIcons from 'react-icons/io';
+import * as IonIcons from 'react-icons/io5';
 import * as RiIcons from 'react-icons/ri';
 import * as AiIcons from 'react-icons/ai';
 import * as BiIcons from 'react-icons/bi';
@@ -9,6 +10,7 @@ import * as BsIcons from 'react-icons/bs';
 export const SidebarData = [
   {
     title: 'Manage Complais',
+    path: '#',
     icon: <IoIcons.IoIosPaper />,
     iconClosed: <RiIcons.RiArrowDownSFill />,
     iconOpened: <RiIcons.RiArrowUpSFill />,
@@ -29,7 +31,7 @@ export const SidebarData = [
       {
         title: 'Under Process',
         path: '/uprocess',
-        icon: <FiIcons.FiPauseCircle />,
+        icon: <IonIcons.IoEllipsisHorizontalCircleOutline />,
         cName: 'sub-nav'
       },
       {
@@ -41,6 +43,7 @@ export const SidebarData = [
   },
   {
     title: 'Manage Resources',
+    path: '#',
     icon: <IoIcons.IoIosSettings />,
     iconClosed: <RiIcons.RiArrowDownSFill />,
     iconOpened: <RiIcons.RiArrowUpSFill />,
@@ -62,6 +65,11 @@ export const SidebarData = [
         icon: <FiIcons.FiRefreshCcw />
       }
     ]
+  },
+  {
+    title: 'Manage Students',
+    path: '/mngstdnts',
+    icon: <BsIcons.BsChatLeftText />
   },
   {
     title: 'Feedback',

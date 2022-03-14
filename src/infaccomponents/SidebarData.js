@@ -1,5 +1,6 @@
 import React from 'react';
 import * as FaIcons from 'react-icons/fa';
+import * as FcIcons from 'react-icons/fc';
 import * as IoIcons from 'react-icons/io';
 import * as RiIcons from 'react-icons/ri';
 import * as BsIcons from 'react-icons/bs';
@@ -28,9 +29,9 @@ export const SidebarData = [
     iconOpened: <RiIcons.RiArrowUpSFill />,
   },
   {
-    title: 'Your Work',
+    title: 'To-Do List',
     path: '/work',
-    icon: <FaIcons.FaEye />,
+    icon: <FcIcons.FcTodoList />,
     iconClosed: <RiIcons.RiArrowDownSFill />,
     iconOpened: <RiIcons.RiArrowUpSFill />,
   },
