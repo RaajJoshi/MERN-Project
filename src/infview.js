@@ -12,11 +12,13 @@ const Uview = () => {
   const [unp, setUnp] = useState('');
   const [cpt, setCpt] = useState('');
   const [work, setWork] = useState('');
+  const [workC, setWorkC] = useState('');
 
   let data = [];
   data = JSON.parse(localStorage.getItem("facInfo"));
   const uid = data[2];
   const lab = data[6];
+  const classroom = data[7];
 
   useEffect(() => {
 
@@ -52,13 +54,38 @@ const Uview = () => {
         console.log("error");
       });
 
-    Axios.get(`/readcompinpbyres/${lab}`, {
+    if(lab && !classroom){
+    Axios.get(`/readcompinpbyresl/${lab}`, {
     }).then((response) => {
       setWork(response.data)
     })
       .catch(() => {
         console.log("error");
       });
+    }else if(classroom && !lab){
+      Axios.get(`/readcompinpbyresc/${classroom}`, {
+      }).then((response) => {
+        setWork(response.data)
+      })
+        .catch(() => {
+          console.log("error");
+        });
+    }else{
+      Axios.get(`/readcompinpbyresol/${lab}`, {
+      }).then((response) => {
+        setWork(response.data)
+      })
+        .catch(() => {
+          console.log("error");
+        });
+        Axios.get(`/readcompinpbyresoc/${classroom}`, {
+        }).then((response) => {
+          setWorkC(response.data)
+        })
+          .catch(() => {
+            console.log("error");
+          });
+    }
 
   }, []);
 
@@ -106,9 +133,9 @@ const Uview = () => {
               </div>
               <div className='sicon'>
                 <AiIcons.AiOutlineFileText />
-                <p style={{ fontSize: '13px', color: '#ECF0F5' }}>To-Do</p>
+                <p style={{ fontSize: '13px', color: '#ECF0F5' }}>To-Do</p>               
                 <div className='countbox'>
-                  <span className='dot'><p style={{ margin: 'auto' }}>{work.length}</p></span>
+                  <span className='dot'><p style={{ margin: 'auto' }}>{work.length + workC.length}</p></span>
                 </div>
               </div>
             </IconContext.Provider>

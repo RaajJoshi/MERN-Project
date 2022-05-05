@@ -1,10 +1,11 @@
 import React, {useState} from 'react';
-import { Navigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Axios from 'axios';
 
 const Forgot = () => {
 
-    
+    const navigate = useNavigate();
+
     const [email, setEmail] = useState('');
     const [otp, setOtp] = useState('');
 
@@ -40,11 +41,13 @@ const Forgot = () => {
             const {data} = await Axios.post(
                 "/verify",
                 {
+                    email,
                     otp,
                 },
                 config
             );
-            console.log(data);
+            localStorage.setItem("userEm",JSON.stringify(data));
+            navigate('/newPass');
         } catch(errors){
             console.log("Error");
         }

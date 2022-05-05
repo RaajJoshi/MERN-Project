@@ -36,6 +36,7 @@ import IFViewComp from './infacpages/ViewComp';
 import Work from './infacpages/work';
 import Home from './home';
 import FP from './forgot';
+import NP from './newPass';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { initialState, reducer } from './UseReducer';
 
@@ -91,6 +92,7 @@ function App() {
           
           
           <Route path='/forgot' element={<FP />} />
+          <Route path='/newPass' element={<NP />} />
           <Route path='/' element={<Home />} />
         </Routes>
       </Router>

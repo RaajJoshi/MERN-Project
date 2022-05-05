@@ -19,7 +19,7 @@ export const Ulogin = () => {
     useEffect(() => {
         const userInfo = localStorage.getItem("userInfo");
         if (userInfo) {
-            <Navigate to="/uview" />;
+            navigate('/uview');
         }
 
     }, []);
@@ -91,22 +91,22 @@ export const Ulogin = () => {
                             <input type={pass ? "text" : "password"} name="password"
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
-                                className='input'
+                                className='inputf'
+                                placeholder='dd-mm-yyyy'
                                 autoComplete='off'
                             />
                             {!pass && <AiIcons.AiFillEye className='eye' onClick={() => setPass(!pass)} />}
                             {pass && <AiIcons.AiFillEyeInvisible className='eye' onClick={() => setPass(!pass)} />}
                         </div>
+                        <p style={{textAlign:'center'}}>NOTE : password for this application is student's birth date</p>
                         {errors.password && <p className='error'>{errors.password}</p>}
                     </div>
+                    
                     <div>
                         <button type='submit' className="submit">Login</button>
                     </div>
                     <div>
                         <button type='btn' className="rstbtn" onClick={resetHandle}>cancel</button>
-                        <button onClick={() => {
-                            navigate("/reg");
-                        }} className='logtoreg'>new user??</button>
                     </div>
                 </form>
             </div>

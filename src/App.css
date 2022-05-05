@@ -78,7 +78,7 @@
 
 .dashboard,
 .admndashboard{
-    height: 74vh;
+    height: 85vh;
     margin-top: 50px;
     background-color: #222D32;
     display: flex;
@@ -217,7 +217,7 @@
 .subcontainer{
     background-color: #1A2226;
     width: 300px;
-    height: 430px;
+    height: 480px;
     padding: 30px;
     margin-top: 3%;
     box-sizing: border-box;
@@ -415,7 +415,7 @@
 }
 
 .forgot{
-    text-align: center;
+    margin: 5px;
     font-size: 0.875em;
     color: #0DB8DE;
     text-decoration: underline;
@@ -449,17 +449,17 @@
     display: flex;
     flex-direction: row;
     position: fixed;
-    right: 0;
-    margin-right: 10px;
-    margin-top: 50px;
+    right: 150px;
+    margin-top: 5px;
 }
 .ddtselect{
     margin-top: 5px;
-    width: 150px;
+    width: 125px;
 }
 .ddmmselect{
-    width: 150px;
-    background-color: #1A2226;
+    background-color: black;
+    min-width: 125px;
+    text-align: center;
 }
 
 .password{
@@ -470,7 +470,8 @@
     padding: 5px;
 }
 
-.input{
+.input,
+.inputf{
     height: 32px;
     font-size: 20px;
     outline: none;
@@ -479,6 +480,19 @@
     border-left-style: none;
     border-right-style: none;
     border-bottom: 2px solid #0DB8DE;
+    margin-bottom: 10px;
+    color: #ECF0F5;
+    background-color: #1A2226;
+}
+
+.input1{
+    height: 32px;
+    font-size: 15px;
+    outline: none;
+    width: 100%;
+    border-top-style: none;
+    border-left-style: none;
+    border-right-style: none;
     margin-bottom: 10px;
     color: #ECF0F5;
     background-color: #1A2226;
@@ -590,7 +604,7 @@
     display: flex;
     align-items: center;
     flex-direction: column;
-    min-height: 75vh;
+    min-height: 90vh;
 }
 
 .updateinfosubcontainer{ 

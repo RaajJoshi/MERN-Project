@@ -52,10 +52,6 @@ function Firstpage() {
             <i className="bi bi-people-fill" style={{ marginRight: '3px' }} />
             About us
           </NavLink>
-          <NavLink to="/reg" activeStyle>
-            <i className="bi bi-person-circle" style={{ marginRight: '3px' }} />
-            Registration
-          </NavLink>
           <NavBtn>
             <NavBtnLink onClick={showSidebar} to='#'>Log-in</NavBtnLink>
           </NavBtn>

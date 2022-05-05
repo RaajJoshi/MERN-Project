@@ -4,8 +4,11 @@ import Valdt from './valaddinfo';
 import ValdtClass from './validationinfoclass';
 import Sidebar from '../components/Sidebar';
 import Axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const Addinfo = () => {
+
+    const navigate = useNavigate();
 
     const [toogle, setToogle] = useState('');
 
@@ -89,6 +92,7 @@ const Addinfo = () => {
                 setMess('Add LAB successfully');
                 setValuesLab({ labno: '', pcno: '', chrno: '', acno: '', fanno: '', lightno: '', ethr: '', projc: '', Incharge: '' });
                 console.log(data);
+                navigate('/aview');
             } catch (errors) {
                 console.log("Error");
                 setMess('');
@@ -130,6 +134,7 @@ const Addinfo = () => {
                         setMess('Add LAB successfully');
                         setValuesLab({ labno: '', pcno: '', chrno: '', acno: '', fanno: '', lightno: '', ethr: '', projc: '', projno: '', projnm1: '', Incharge: '' });
                         console.log(data);
+                        navigate('/aview');
                     } catch (errors) {
                         console.log("Error");
                         setMess('');
@@ -173,6 +178,7 @@ const Addinfo = () => {
                             setMess('Add LAB successfully');
                             setValuesLab({ labno: '', pcno: '', chrno: '', acno: '', fanno: '', lightno: '', ethr: '', projc: '', projno: '', projnm1: '', projnm2: '', Incharge: '' });
                             console.log(data);
+                            navigate('/aview');
                         } catch (errors) {
                             console.log("Error");
                             setMess('');
@@ -211,6 +217,7 @@ const Addinfo = () => {
             setMess('Add Classroom successfully');
             setValuesClass({ classno: '', benchno: '', fannno: '', tubelightno: '', projec: '', Inchargeclass: '' });
             console.log(data);
+            navigate('/aview');
         } catch (errors) {
             console.log("Error");
             setMess('');
@@ -383,7 +390,7 @@ const Addinfo = () => {
                                                 if (valuesLab.projc === 'yes' && valuesLab.projno === '1') {
                                                     return (
                                                         <div className='fanno'>
-                                                            <label htmlFor="projnm1">Company</label>
+                                                            <label htmlFor="projnm1">Company Name of Projector 1</label>
                                                             <input type="text" name="projnm1"
                                                                 value={valuesLab.projnm1}
                                                                 onChange={changeHandleRadio}
@@ -398,7 +405,7 @@ const Addinfo = () => {
                                                     return (
                                                         <>
                                                             <div className='fanno'>
-                                                                <label htmlFor="projnm1">Company</label>
+                                                                <label htmlFor="projnm1">Company Name of Projector 1</label>
                                                                 <input type="text" name="projnm1"
                                                                     value={valuesLab.projnm1}
                                                                     onChange={changeHandleRadio}
@@ -408,7 +415,7 @@ const Addinfo = () => {
                                                                 {errors.projnm1 && <p className='error'>{errors.projnm1}</p>}
                                                             </div>
                                                             <div className='fanno'>
-                                                                <label htmlFor="projnm2">Company</label>
+                                                                <label htmlFor="projnm2">Company Name of Projector 2</label>
                                                                 <input type="text" name="projnm2"
                                                                     value={valuesLab.projnm2}
                                                                     onChange={changeHandleRadio}

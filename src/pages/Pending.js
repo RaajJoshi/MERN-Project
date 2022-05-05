@@ -73,7 +73,7 @@ const Pendingcomp = () => {
                     <Dropdown value={type} name='type'>
                         <Dropdown.Toggle className='ddtselect' variant="secondary" id="dropdown-basic">
                             <IconContext.Provider value={{ color: 'white' }}>
-                                <BsIcons.BsFilterSquare />&nbsp;&nbsp;Filter By&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <BsIcons.BsFilterSquare />&nbsp;&nbsp;Filter By&nbsp;&nbsp;&nbsp;
                             </IconContext.Provider>
                         </Dropdown.Toggle>
                         <Dropdown.Menu className='ddmmselect'>
@@ -85,10 +85,10 @@ const Pendingcomp = () => {
                 </div>
                 <div className='ddmselect2'>
                     
-                    <Dropdown value={subType} name='subType'>
+                    {type === 'Lab' && <Dropdown value={subType} name='subType'>
                         <Dropdown.Toggle className='ddtselect' variant="secondary" id="dropdown-basic">
                             <IconContext.Provider value={{ color: 'white' }}>
-                                <BsIcons.BsFilterSquare />&nbsp;&nbsp;Filter By&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <BsIcons.BsFilterSquare />&nbsp;&nbsp;Filter By&nbsp;&nbsp;&nbsp;
                             </IconContext.Provider>
                         </Dropdown.Toggle>
 
@@ -100,6 +100,16 @@ const Pendingcomp = () => {
                                     );
                                 })
                             }
+                        </Dropdown.Menu>
+                    </Dropdown>}
+                    {type === 'Classroom' && <Dropdown value={subType} name='subType'>
+                        <Dropdown.Toggle className='ddtselect' variant="secondary" id="dropdown-basic">
+                            <IconContext.Provider value={{ color: 'white' }}>
+                                <BsIcons.BsFilterSquare />&nbsp;&nbsp;Filter By&nbsp;&nbsp;&nbsp;
+                            </IconContext.Provider>
+                        </Dropdown.Toggle>
+
+                        <Dropdown.Menu className='ddmmselect'>
                             {type === 'Classroom' &&
                                 classValue.map((val) => {
                                     return (
@@ -108,7 +118,7 @@ const Pendingcomp = () => {
                                 })
                             }
                         </Dropdown.Menu>
-                    </Dropdown>
+                    </Dropdown>}
                 </div>
                 <div>
                     {finalValue.map((val) => {
@@ -122,6 +132,7 @@ const Pendingcomp = () => {
                                         <div className='mancomp'>
                                             <div className='updateinfosubcontainer'>
                                                 <h3>Equipment : {val.eqtype}{"  "}</h3>
+                                                <h3>Equipment No : {val.eqno}{"  "}</h3>
                                                 <h3>Description : {val.abeq}{"  "}</h3>
                                                 <h3>STATUS : {val.status}</h3>
                                             </div>
@@ -142,6 +153,7 @@ const Pendingcomp = () => {
                                         <div className='mancomp'>
                                             <div className='updateinfosubcontainer'>
                                                 <h3>Equipment : {val.eqtype}{"  "}</h3>
+                                                <h3>Equipment No : {val.eqno}{"  "}</h3>
                                                 <h3>Description : {val.abeq}{"  "}</h3>
                                                 <h3>STATUS : {val.status}</h3>
                                             </div>
@@ -166,6 +178,7 @@ const Pendingcomp = () => {
                                                 <div className='mancomp'>
                                                     <div className='updateinfosubcontainer'>
                                                         <h3>Equipment : {val.eqtype}{"  "}</h3>
+                                                        <h3>Equipment No : {val.eqno}{"  "}</h3>
                                                         <h3>Description : {val.abeq}{"  "}</h3>
                                                         <h3>STATUS : {val.status}</h3>
                                                     </div>
@@ -187,6 +200,7 @@ const Pendingcomp = () => {
                                             <div className='mancomp'>
                                                 <div className='updateinfosubcontainer'>
                                                     <h3>Equipment : {val.eqtype}{"  "}</h3>
+                                                    <h3>Equipment No : {val.eqno}{"  "}</h3>
                                                     <h3>Description : {val.abeq}{"  "}</h3>
                                                     <h3>STATUS : {val.status}</h3>
                                                 </div>
@@ -212,6 +226,7 @@ const Pendingcomp = () => {
                                                 <div className='mancomp'>
                                                     <div className='updateinfosubcontainer'>
                                                         <h3>Equipment : {val.eqtype}{"  "}</h3>
+                                                        <h3>Equipment No : {val.eqno}{"  "}</h3>
                                                         <h3>Description : {val.abeq}{"  "}</h3>
                                                         <h3>STATUS : {val.status}</h3>
                                                     </div>
@@ -233,6 +248,7 @@ const Pendingcomp = () => {
                                             <div className='mancomp'>
                                                 <div className='updateinfosubcontainer'>
                                                     <h3>Equipment : {val.eqtype}{"  "}</h3>
+                                                    <h3>Equipment No : {val.eqno}{"  "}</h3>
                                                     <h3>Description : {val.abeq}{"  "}</h3>
                                                     <h3>STATUS : {val.status}</h3>
                                                 </div>

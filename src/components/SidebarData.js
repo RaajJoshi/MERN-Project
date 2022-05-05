@@ -69,7 +69,7 @@ export const SidebarData = [
   {
     title: 'Manage Students',
     path: '/mngstdnts',
-    icon: <BsIcons.BsChatLeftText />
+    icon: <IonIcons.IoPersonSharp />
   },
   {
     title: 'Feedback',

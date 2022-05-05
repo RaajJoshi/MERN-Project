@@ -43,8 +43,7 @@ const Home = () => {
                 </button>
                 {showHide && <div>
                     <table className='table'>
-                        <tr><td>If you want to post complaint then register your self in <Link style={{textDecoration:'none'}} to='/reg'>Student Registration</Link></td></tr>
-                        <tr><td>After registration Login to <Link style={{textDecoration:'none'}} to='/ulogin'>Student Login</Link></td></tr>
+                        <tr><td>If you want to post complaint then Login into <Link style={{textDecoration:'none'}} to='/ulogin'>Student Login</Link></td></tr>
                         <tr><td>Now raise your complain/(s) and submit it.</td></tr>
                         <tr><td>You can see status of your complain/(s) in View Complains.</td></tr>
                         <tr><td>Also you can modify it in Modify Complain.</td></tr>

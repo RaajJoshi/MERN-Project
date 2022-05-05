@@ -45,7 +45,6 @@ const PostComp = () => {
   const [fac, setFac] = useState([]);
 
   const setLab = (rsno) => {
-
     Axios.get(`/readlabbyid/${rsno}`, {
     }).then((response) => {
       setLabValues(response.data)
@@ -54,7 +53,9 @@ const PostComp = () => {
       .catch(() => {
         console.log("error");
       });
+  };
 
+  const setLabFac = () => {
     let fid;
     labValues.map((val) => {
       fid = val.Incharge;
@@ -68,7 +69,6 @@ const PostComp = () => {
       .catch(() => {
         console.log("error");
       });
-
   };
 
   const setClass = (rsno) => {
@@ -78,10 +78,15 @@ const PostComp = () => {
       setClassValues(response.data)
       console.log(response.data);
     })
-    .catch(() => {
-      console.log("error");
-    });
+      .catch(() => {
+        console.log("error");
+      });
 
+
+
+  };
+
+  const setClassFac = () => {
     let fid;
     classValues.map((val) => {
       fid = val.Inchargeclass;
@@ -92,10 +97,9 @@ const PostComp = () => {
       setFac(response.data)
       console.log(response.data);
     })
-    .catch(() => {
-      console.log("error");
-    });
-
+      .catch(() => {
+        console.log("error");
+      });
   };
 
   useEffect(() => {
@@ -149,44 +153,44 @@ const PostComp = () => {
 
     e.preventDefault();
     setErrors(Valdt(compLab));
-    if (compLab.eqtype === 'Ethernet') {
-      const { resno, eqtype, abeq, eqno, userID } = compLab;
+    // if (compLab.eqtype === 'Ethernet') {
+    //   const { resno, eqtype, abeq, eqno, userID } = compLab;
 
-      let eid;
-      fac.map((val) => {
-        eid = val.email;
-      });
+    //   let eid;
+    //   fac.map((val) => {
+    //     eid = val.email;
+    //   });
 
-      try {
-        const config = {
-          headers: {
-            "Content-Type": "application/json"
-          }
-        };
-        const { data } = await Axios.post(
-          "/addcomp",
-          {
-            comptype: 'lab',
-            resno,
-            eqtype,
-            abeq,
-            eqno,
-            status: 'pending',
-            userID,
-            eid,
-          },
-          config
-        );
-        setErr('');
-        setMess('Add Complain successfully');
-        setCompLab({ resno: '', eqtype: '', eqno: '', abeq: '' });
-        console.log(data);
-      } catch (errors) {
-        console.log("Error");
-        setMess('');
-        setErr('Invalid Information');
-      }
-    } else {
+    //   try {
+    //     const config = {
+    //       headers: {
+    //         "Content-Type": "application/json"
+    //       }
+    //     };
+    //     const { data } = await Axios.post(
+    //       "/addcomp",
+    //       {
+    //         comptype: 'lab',
+    //         resno,
+    //         eqtype,
+    //         abeq,
+    //         eqno,
+    //         status: 'pending',
+    //         userID,
+    //         eid,
+    //       },
+    //       config
+    //     );
+    //     setErr('');
+    //     setMess('Add Complain successfully');
+    //     setCompLab({ resno: '', eqtype: '', eqno: '', abeq: '' });
+    //     console.log(data);
+    //   } catch (errors) {
+    //     console.log("Error");
+    //     setMess('');
+    //     setErr('Invalid Information');
+    //   }
+    // } else {
       labValues.map((val) => {
         if (!compLab.eqno) {
           setErrors({ ...errors, eqno: "This field is required." });
@@ -224,6 +228,12 @@ const PostComp = () => {
         }
         else if (compLab.eqtype === 'Projector') {
           if (compLab.eqno > val.projno) {
+            setErrors({ ...errors, eqno: "plz, Enter number limit" });
+            f = 1;
+          }
+        }
+        else if (compLab.eqtype === 'Ethernet') {
+          if (compLab.eqno > val.pcno) {
             setErrors({ ...errors, eqno: "plz, Enter number limit" });
             f = 1;
           }
@@ -266,7 +276,7 @@ const PostComp = () => {
           setMess('');
           setErr('Invalid Information');
         }
-      }
+      //}
     }
 
   };
@@ -441,54 +451,32 @@ const PostComp = () => {
                             Equipment : {compLab.eqtype}
                           </Dropdown.Toggle>
                           <Dropdown.Menu className='ddm'>
-                            <Dropdown.Item className='ddi' onClick={() => setCompLab({ ...compLab, eqtype: 'Pc' })}>PC</Dropdown.Item>
-                            <Dropdown.Item className='ddi' onClick={() => setCompLab({ ...compLab, eqtype: 'Ac' })}>AC</Dropdown.Item>
-                            <Dropdown.Item className='ddi' onClick={() => setCompLab({ ...compLab, eqtype: 'Chair' })}>Chair</Dropdown.Item>
-                            <Dropdown.Item className='ddi' onClick={() => setCompLab({ ...compLab, eqtype: 'Fan' })}>Fan</Dropdown.Item>
-                            <Dropdown.Item className='ddi' onClick={() => setCompLab({ ...compLab, eqtype: 'TubeLight' })}>TubeLight</Dropdown.Item>
-                            <Dropdown.Item className='ddi' onClick={() => setCompLab({ ...compLab, eqtype: 'Ethernet' })}>Etherner</Dropdown.Item>
-                            <Dropdown.Item className='ddi' onClick={() => setCompLab({ ...compLab, eqtype: 'Projector' })}>Projector</Dropdown.Item>
+                            <Dropdown.Item className='ddi' onClick={() => { setCompLab({ ...compLab, eqtype: 'Pc' }); setLabFac(); }}>PC</Dropdown.Item>
+                            <Dropdown.Item className='ddi' onClick={() => { setCompLab({ ...compLab, eqtype: 'Ac' }); setLabFac(); }}>AC</Dropdown.Item>
+                            <Dropdown.Item className='ddi' onClick={() => { setCompLab({ ...compLab, eqtype: 'Chair' }); setLabFac(); }}>Chair</Dropdown.Item>
+                            <Dropdown.Item className='ddi' onClick={() => { setCompLab({ ...compLab, eqtype: 'Fan' }); setLabFac(); }}>Fan</Dropdown.Item>
+                            <Dropdown.Item className='ddi' onClick={() => { setCompLab({ ...compLab, eqtype: 'TubeLight' }); setLabFac(); }}>TubeLight</Dropdown.Item>
+                            <Dropdown.Item className='ddi' onClick={() => { setCompLab({ ...compLab, eqtype: 'Ethernet' }); setLabFac(); }}>Etherner</Dropdown.Item>
+                            <Dropdown.Item className='ddi' onClick={() => { setCompLab({ ...compLab, eqtype: 'Projector' }); setLabFac(); }}>Projector</Dropdown.Item>
                           </Dropdown.Menu>
                         </Dropdown>
                         {errors.eqtype && <p className='error'>{errors.eqtype}</p>}
                       </div>
 
-                      {compLab.eqtype !== 'Ethernet' &&
-
-                        <div className='fanno'>
-                          <label htmlFor="eqno">Equipment Number</label>
-                          <input type="text" name="eqno"
-                            value={compLab.eqno}
-                            onChange={changeHandle}
-                            className='input'
-                            placeholder='Enter digits only...'
-                            autoComplete='off'
-                          />
-                          {errors.eqno && <p className='error'>{errors.eqno}</p>}
-                        </div>
-
-                      }
-                      {/* {(() => {
-                        if (compLab.eqtype !== 'Ethernet') {
-                          return (
-                            <div className='fanno'>
-                              <label htmlFor="eqno">Equipment Number</label>
-                              <input type="text" name="eqno"
-                                value={compLab.eqno}
-                                onChange={changeHandle}
-                                className='input'
-                                placeholder='Enter digits only...'
-                                autoComplete='off'
-                              />
-                              {errors.eqno && <p className='error'>{errors.eqno}</p>}
-                            </div>
-                          );
-                        }
-                      })()} */}
-
+                      <div className='fanno'>
+                        <label htmlFor="eqno">Equipment Number</label>
+                        <input type="text" name="eqno"
+                          value={compLab.eqno}
+                          onChange={changeHandle}
+                          className='input'
+                          placeholder='Enter digits only...'
+                          autoComplete='off'
+                        />
+                        {errors.eqno && <p className='error'>{errors.eqno}</p>}
+                      </div>
 
                       <div className='abeq'>
-                        <label htmlFor="abeq">Descripation</label>
+                        <label htmlFor="abeq">Description</label>
                         <textarea name="abeq"
                           value={compLab.abeq}
                           onChange={changeHandleDescr}
@@ -540,10 +528,10 @@ const PostComp = () => {
                             Equipment : {compClass.eqtype}
                           </Dropdown.Toggle>
                           <Dropdown.Menu className='ddm'>
-                            <Dropdown.Item className='ddi' onClick={() => setCompClass({ ...compClass, eqtype: 'Bench' })}>Bench</Dropdown.Item>
-                            <Dropdown.Item className='ddi' onClick={() => setCompClass({ ...compClass, eqtype: 'Fan' })}>Fan</Dropdown.Item>
-                            <Dropdown.Item className='ddi' onClick={() => setCompClass({ ...compClass, eqtype: 'TubeLight' })}>TubeLight</Dropdown.Item>
-                            <Dropdown.Item className='ddi' onClick={() => setCompClass({ ...compClass, eqtype: 'Projector' })}>Projector</Dropdown.Item>
+                            <Dropdown.Item className='ddi' onClick={() => { setCompClass({ ...compClass, eqtype: 'Bench' }); setClassFac(); }}>Bench</Dropdown.Item>
+                            <Dropdown.Item className='ddi' onClick={() => { setCompClass({ ...compClass, eqtype: 'Fan' }); setClassFac(); }}>Fan</Dropdown.Item>
+                            <Dropdown.Item className='ddi' onClick={() => { setCompClass({ ...compClass, eqtype: 'TubeLight' }); setClassFac(); }}>TubeLight</Dropdown.Item>
+                            <Dropdown.Item className='ddi' onClick={() => { setCompClass({ ...compClass, eqtype: 'Projector' }); setClassFac(); }}>Projector</Dropdown.Item>
                           </Dropdown.Menu>
                         </Dropdown>
                         {errors.eqtype && <p className='error'>{errors.eqtype}</p>}
@@ -566,7 +554,7 @@ const PostComp = () => {
                       }
 
                       <div className='abeq'>
-                        <label htmlFor="abeq">Descripation</label>
+                        <label htmlFor="abeq">Description</label>
                         <textarea name="abeq"
                           value={compClass.abeq}
                           onChange={changeHandleDescr}
